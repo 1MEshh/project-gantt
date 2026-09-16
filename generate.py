@@ -1,43 +1,48 @@
 #!/usr/bin/env python3
-"""Generate the BioAgeVision project plan: standalone SVG figure plus an interactive page."""
+"""Generate the BioAgeVision two-phase project plan: standalone SVG figure plus an interactive page."""
 
 import datetime as dt
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-START = dt.date(2026, 9, 13)
-WEEKS = 14
-TOTAL_DAYS = WEEKS * 7
+START1 = dt.date(2026, 9, 13)
+START2 = dt.date(2027, 1, 14)
+P1_WEEKS = 14
+P2_WEEKS = 15
+P1_DAYS = P1_WEEKS * 7
+P2_DAYS = P2_WEEKS * 7
+COLS = P1_WEEKS + P2_WEEKS
 
 TASKS = [
-    dict(id="1.1", name="Define problem statement & objectives", sw=1, ew=2, phase="def", deps=[]),
-    dict(id="1.2", name="Identify required resources", sw=2, ew=3, phase="def", deps=[]),
-    dict(id="2.1", name="Research biological vs chronological age markers", sw=3, ew=4, phase="res", deps=["1.1"]),
-    dict(id="2.2", name="Analyze CNNs, Vision Transformers & XAI", sw=4, ew=6, phase="res", deps=["1.1"]),
-    dict(id="2.3", name="Critical analysis and comparison of models", sw=5, ew=7, phase="res", deps=["2.1", "2.2"]),
-    dict(id="3.1", name="Define system requirements for BioAgeVision", sw=7, ew=8, phase="req", deps=["2.3"]),
-    dict(id="3.2", name="Determine dataset constraints and facial imagery", sw=8, ew=9, phase="req", deps=["3.1"]),
-    dict(id="4.1", name="Design deep neural network architecture", sw=9, ew=11, phase="des", deps=["3.2"]),
-    dict(id="4.2", name="Design high-frequency spatial filters & XAI", sw=10, ew=12, phase="des", deps=["4.1"]),
-    dict(id="5.1", name="Draft Chapter 1: Introduction", sw=3, ew=4, phase="doc", deps=["1.1", "1.2"]),
-    dict(id="5.2", name="Draft Chapter 2: Literature Review", sw=5, ew=8, phase="doc", deps=["2.1", "2.2"]),
-    dict(id="5.3", name="Draft Chapter 3: Methodology & Design", sw=9, ew=12, phase="doc", deps=["4.1", "4.2"]),
-    dict(id="6.1", name="Group proof-reading & formatting checks", sw=13, ew=14, phase="fin", deps=["5.1", "5.2", "5.3"]),
-    dict(id="6.2", name="Final Submission", sw=14, ew=14, phase="fin", deps=["6.1"]),
+    dict(id="1.0", name="Project Initialization & Scope", phase=1, sw=1, ew=2, kind="core", deps=[]),
+    dict(id="1.1", name="Draft Chapter 1: Introduction", phase=1, sw=2, ew=3, kind="draft", deps=["1.0"]),
+    dict(id="2.0", name="Literature Research", phase=1, sw=4, ew=7, kind="core", deps=["1.0"]),
+    dict(id="2.1", name="Draft Chapter 2: Literature Review", phase=1, sw=7, ew=9, kind="draft", deps=["2.0"]),
+    dict(id="3.0", name="System Requirements Analysis", phase=1, sw=9, ew=11, kind="core", deps=["2.0"]),
+    dict(id="3.1", name="Draft Chapter 3: Requirements/Analysis", phase=1, sw=11, ew=13, kind="draft", deps=["3.0"]),
+    dict(id="4.0", name="Phase One Final Review & Polish", phase=1, sw=13, ew=14, kind="core", deps=["3.1"]),
+    dict(id="M1", name="Phase 1 Final Submission", phase=1, sw=14, ew=14, kind="milestone", deps=["4.0"]),
+    dict(id="5.0", name="System Design", phase=2, sw=1, ew=3, kind="core", deps=["M1"]),
+    dict(id="5.1", name="Draft Chapter 4: Design", phase=2, sw=3, ew=5, kind="draft", deps=["5.0"]),
+    dict(id="6.0", name="Implementation & App Deployment", phase=2, sw=5, ew=10, kind="core", deps=["5.0"]),
+    dict(id="6.1", name="Draft Chapter 5: Implementation & Test", phase=2, sw=10, ew=12, kind="draft", deps=["6.0"]),
+    dict(id="7.0", name="Model Evaluation & Heatmaps", phase=2, sw=11, ew=13, kind="core", deps=["6.1"]),
+    dict(id="7.1", name="Draft Ch. 6 & 7: Evaluation & Conclusion", phase=2, sw=13, ew=14, kind="draft", deps=["7.0"]),
+    dict(id="8.0", name="Final Report Review", phase=2, sw=14, ew=15, kind="core", deps=["7.1"]),
+    dict(id="M2", name="Phase 2 Final Submission", phase=2, sw=15, ew=15, kind="milestone", deps=["8.0"]),
 ]
 
 PHASES = {
-    "def": ("Definition", "#1D3D5C", "#CBD8E4", "#12293D"),
-    "res": ("Research & Analysis", "#1F6E9C", "#C4DEED", "#14506F"),
-    "req": ("Requirements", "#2A8E88", "#C3E4E1", "#1C6661"),
-    "des": ("Architecture & Design", "#6E9A38", "#DCE8C7", "#4F7026"),
-    "doc": ("Documentation", "#C08A2E", "#F1E2C2", "#8F6519"),
-    "fin": ("Finalization", "#8E3F6B", "#E5CEDC", "#692E4E"),
+    1: ("Phase 1", "Sep 13 \u2013 Dec 19, 2026", "#1D4E7C", "#D7E3EE", "#143A5C"),
+    2: ("Phase 2", "Jan 14 \u2013 Apr 29, 2027", "#2A7D74", "#D3E6E3", "#1F5E57"),
 }
 
-PROJECT = "BioAgeVision"
-SUBTITLE = "Implementation plan for the 14-week semester, Sunday 13 September to Saturday 19 December 2026."
+MILESTONE_DATES = {"M1": dt.date(2026, 12, 19), "M2": dt.date(2027, 4, 29)}
+OVERLAP_PAIRS = {
+    ("1.0", "1.1"), ("2.0", "2.1"), ("3.0", "3.1"), ("3.1", "4.0"),
+    ("5.0", "5.1"), ("6.0", "6.1"), ("6.1", "7.0"), ("7.0", "7.1"), ("7.1", "8.0"),
+}
 
 INK = "#16232E"
 TEXT = "#3A4A54"
@@ -46,44 +51,46 @@ FAINT = "#8C9AA5"
 HAIR = "#E8ECEC"
 LINE = "#D9DEDF"
 PANEL = "#F5F7F7"
-DEADLINE = "#A32B2B"
+CRIMSON = "#A32B2B"
+CLEAN = "#7E8C97"
+OVERLAP = "#A9B5BD"
 ARCHIVO = "Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif"
 
 PAD = 28
 LEFT_W = 300
 ID_W = 48
-WEEK_W = 72
+WEEK_W = 58
 PLOT_X = PAD + LEFT_W
-PLOT_W = WEEKS * WEEK_W
+PLOT_W = COLS * WEEK_W
 PLOT_RIGHT = PLOT_X + PLOT_W
 WIDTH = PLOT_RIGHT + PAD + 4
-TITLE_Y = 46
-SUBTITLE_Y = 72
-LEGEND1 = 104
-LEGEND2 = 128
-AXIS_TOP = 150
-MONTH_BOTTOM = 170
-WEEK_LABEL_Y = 190
-DATE_LABEL_Y = 203
-PLOT_TOP = 212
-ROW_H = 40
-BAR_H = 22
-BAR_OFF = (ROW_H - BAR_H) // 2
+TITLE_Y = 44
+LEGEND_Y = 82
+BANNER_TOP = 104
+BANNER_H = 24
+BANNER_BOTTOM = BANNER_TOP + BANNER_H
+WEEK_Y = 147
+DATE_Y = 161
+PLOT_TOP = 171
+ROW_H = 38
+BAR_H = 20
+BAR_OFF = 9
 ROWS_BOTTOM = PLOT_TOP + len(TASKS) * ROW_H
-HEIGHT = ROWS_BOTTOM + 38
-MONTHS = [(0, 18, "September"), (18, 49, "October"), (49, 79, "November"), (79, 98, "December")]
+HEIGHT = ROWS_BOTTOM + 34
+MONTH_LINES = [(18, "Oct"), (49, "Nov"), (79, "Dec"), (116, "Feb"), (144, "Mar"), (175, "Apr")]
 
 SVG_CSS = """
 text{font-family:%s}
 .dep{fill:none;stroke-linecap:square}
-.clean{stroke:#7E8C97;stroke-width:1.5}
-.overlap{stroke:#A9B5BD;stroke-width:1.2;stroke-dasharray:4 3}
-.bar{cursor:pointer;transition:opacity .15s ease}
-.dep.dim,.bar.dim{opacity:.12}
-.bar .lbl{font-size:11px;font-weight:700}
-.bar .dur{font-size:9.5px;font-weight:500}
+.clean{stroke:%s;stroke-width:1.5}
+.overlap{stroke:%s;stroke-width:1.2;stroke-dasharray:4 3}
+.bar,.ms{cursor:pointer;transition:opacity .15s ease}
+.dep.dim,.bar.dim,.ms.dim{opacity:.12}
+.bar .lbl{font-size:10.5px;font-weight:700}
+.bar .dur{font-size:9px;font-weight:500}
 .bar:hover .bx{stroke:%s;stroke-width:2}
-""" % (ARCHIVO, INK)
+.ms:hover polygon{stroke:%s;stroke-width:2}
+""" % (ARCHIVO, CLEAN, OVERLAP, INK, INK)
 
 
 def n(v):
@@ -91,12 +98,14 @@ def n(v):
     return str(int(v)) if v == int(v) else str(v)
 
 
-def x_of(day):
-    return PLOT_X + day * WEEK_W / 7.0
+def xg(g):
+    return PLOT_X + g * WEEK_W / 7.0
 
 
-def date_of(day):
-    return START + dt.timedelta(days=day)
+def gdate(g, phase):
+    if phase == 1:
+        return START1 + dt.timedelta(days=g)
+    return START2 + dt.timedelta(days=g - P1_DAYS)
 
 
 def esc(s):
@@ -125,14 +134,14 @@ def T(x, y, s, size=11, fill=INK, weight="400", anchor="start", cls=None, ls=Non
 def L(x1, y1, x2, y2, stroke=HAIR, width=1, dash=None, marker=None, cls=None):
     d = f' stroke-dasharray="{dash}"' if dash else ""
     m = f' marker-end="url(#{marker})"' if marker else ""
-    c = f' class="{c}"' if (c := cls) else ""
+    c = f' class="{cls}"' if cls else ""
     return (f'<line x1="{n(x1)}" y1="{n(y1)}" x2="{n(x2)}" y2="{n(y2)}" '
             f'stroke="{stroke}" stroke-width="{n(width)}"{d}{m}{c}/>')
 
 
-def diamond(cx, cy, r, fill, stroke="#FFFFFF", sw=1.5):
+def diamond(cx, cy, r, fill, stroke="#FFFFFF", sw=1.5, extra=""):
     pts = f"{n(cx)},{n(cy - r)} {n(cx + r)},{n(cy)} {n(cx)},{n(cy + r)} {n(cx - r)},{n(cy)}"
-    return f'<polygon points="{pts}" fill="{fill}" stroke="{stroke}" stroke-width="{n(sw)}"/>'
+    return f'<polygon points="{pts}" fill="{fill}" stroke="{stroke}" stroke-width="{n(sw)}"{extra}/>'
 
 
 def prepare(tasks):
@@ -141,34 +150,38 @@ def prepare(tasks):
         for d in t["deps"]:
             if d not in by_id:
                 raise ValueError(f"{t['id']}: unknown dependency {d}")
-        if not (1 <= t["sw"] <= t["ew"] <= WEEKS):
+        weeks = P1_WEEKS if t["phase"] == 1 else P2_WEEKS
+        if not (1 <= t["sw"] <= t["ew"] <= weeks):
             raise ValueError(f"{t['id']}: weeks out of range")
+        if t["kind"] == "milestone":
+            if t["sw"] != t["ew"]:
+                raise ValueError(f"{t['id']}: milestone spans more than one week")
         t["dur"] = t["ew"] - t["sw"] + 1
-        t["start"] = (t["sw"] - 1) * 7
-        t["end"] = t["ew"] * 7
+        offset = 0 if t["phase"] == 1 else P1_DAYS
+        t["start"] = (t["sw"] - 1) * 7 + offset
+        t["end"] = t["ew"] * 7 + offset
+        if t["kind"] == "milestone":
+            t["point"] = t["end"]
+            t["start"] = t["end"] = t["point"]
+
+    for t in tasks:
+        if t["kind"] != "milestone":
+            continue
+        t["date"] = MILESTONE_DATES[t["id"]]
+    if gdate(by_id["M1"]["point"] - 1, 1) != MILESTONE_DATES["M1"]:
+        raise ValueError("M1: date mismatch")
+    if gdate(by_id["M2"]["point"], 2) != MILESTONE_DATES["M2"]:
+        raise ValueError("M2: date mismatch")
 
     succ = {t["id"]: [] for t in tasks}
+    overlaps = set()
     for t in tasks:
         for d in t["deps"]:
             succ[d].append(t["id"])
-
-    clean = overlap = 0
-    for t in tasks:
-        starts = [by_id[s]["start"] for s in succ[t["id"]]]
-        t["float"] = min(starts) - t["end"] if starts else 0
-        t["critical"] = t["float"] <= 0
-    for t in tasks:
-        for d in t["deps"]:
-            if by_id[d]["end"] <= t["start"]:
-                clean += 1
-            else:
-                overlap += 1
-
-    if clean != 8 or overlap != 10:
-        raise ValueError(f"dependency mix changed: clean={clean} overlap={overlap}")
-    floats = {t["id"]: t["float"] for t in tasks if not t["critical"]}
-    if floats != {"5.1": 56, "5.2": 28}:
-        raise ValueError(f"float set changed: {floats}")
+            if by_id[d]["end"] > t["start"]:
+                overlaps.add((d, t["id"]))
+    if overlaps != OVERLAP_PAIRS:
+        raise ValueError(f"overlap set changed: {overlaps ^ OVERLAP_PAIRS}")
     return by_id, succ
 
 
@@ -195,130 +208,175 @@ def week_span(t):
 
 
 def fmt_span(t):
-    a = date_of(t["start"])
-    b = date_of(t["end"] - 1)
-    return f"{a:%a %-d %b} \u2013 {b:%a %-d %b %Y}"
+    if t["kind"] == "milestone":
+        return f"End of {PHASES[t['phase']][0]} \u00b7 {t['date']:%a %-d %b %Y}"
+    a = gdate(t["start"], t["phase"])
+    b = gdate(t["end"] - 1, t["phase"])
+    return f"{a:%a %-d %b %Y} \u2013 {b:%a %-d %b %Y}"
 
 
 def tip_html(t):
     deps = ", ".join(t["deps"]) if t["deps"] else "none"
-    if t["critical"]:
-        status = "Driving chain (no float)"
+    label, _, _, _, _ = PHASES[t["phase"]]
+    if t["kind"] == "milestone":
+        body = (f"<b>{t['id']} \u2014 {t['name']}</b><br>"
+                f"{fmt_span(t)}<br>Milestone \u00b7 {label}<br>Depends on: {deps}")
     else:
-        status = f"Float: {t['float'] // 7} weeks"
-    body = (f"<b>{t['id']} \u2014 {t['name']}</b><br>"
-            f"{fmt_span(t)}<br>"
-            f"{week_span(t)} \u00b7 {t['dur']} weeks \u00b7 {PHASES[t['phase']][0]}<br>"
-            f"Depends on: {deps} \u00b7 {status}")
+        kind = "Core task" if t["kind"] == "core" else "Drafting / parallel task"
+        body = (f"<b>{t['id']} \u2014 {t['name']}</b><br>"
+                f"{fmt_span(t)}<br>"
+                f"{week_span(t)} \u00b7 {t['dur']} weeks \u00b7 {label}<br>"
+                f"{kind} \u00b7 Depends on: {deps}")
     return esc_attr(body)
 
 
 def build_svg():
     by_id, succ = prepare(TASKS)
-    order = sorted(TASKS, key=lambda t: (t["start"], t["end"], t["id"]))
+    order = sorted(TASKS, key=lambda t: (t["phase"], t["start"], t["end"], t["id"]))
     idx = {t["id"]: i for i, t in enumerate(order)}
-    dates = {t["id"]: t for t in TASKS}
+    xb = xg(P1_DAYS)
 
     def ry(i):
         return PLOT_TOP + i * ROW_H
 
+    def yc(t):
+        return ry(idx[t["id"]]) + BAR_OFF + BAR_H // 2
+
     def bar_y(t):
         return ry(idx[t["id"]]) + BAR_OFF
 
+    def bar_left(t):
+        return xg(t["start"])
+
     def bar_right(t):
-        return x_of(t["end"]) - 3
+        return xg(t["end"]) - 3
+
+    def bar_width(t):
+        return (t["end"] - t["start"]) * WEEK_W / 7
+
+    def anchor(t):
+        if t["kind"] == "milestone":
+            return xg(t["point"]), yc(t)
+        return bar_right(t), yc(t)
 
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" '
          f'viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{ARCHIVO}" role="img" '
-         f'aria-label="BioAgeVision project implementation plan, Gantt chart">']
-    p.append(f'<title>{esc(PROJECT)} project implementation plan</title>')
+         f'aria-label="BioAgeVision two-phase project plan, Gantt chart">']
+    p.append(f'<title>BioAgeVision two-phase project plan</title>')
     p.append(f"<defs><style>{SVG_CSS}</style>")
-    p.append('<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" '
-             'orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#7E8C97"/></marker>')
-    p.append('<marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" '
-             'orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#A9B5BD"/></marker>')
+    p.append(f'<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" '
+             f'orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="{CLEAN}"/></marker>')
+    p.append(f'<marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" '
+             f'orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="{OVERLAP}"/></marker>')
     p.append("</defs>")
     p.append(R(0, 0, WIDTH, HEIGHT, fill="#FCFDFC"))
 
-    p.append(T(PAD, TITLE_Y, PROJECT, size=30, weight="700", ls=-0.4))
-    p.append(T(PAD, SUBTITLE_Y, SUBTITLE, size=12, fill=MUTED))
+    p.append(T(PAD, TITLE_Y, "BioAgeVision", size=30, weight="700", ls=-0.4))
 
     lx = PAD
-    legend1 = ['<g class="phase-legend">']
-    for key, (label, fill, tint, dark) in PHASES.items():
-        legend1.append(R(lx, LEGEND1 - 10, 12, 12, fill=fill, rx=2))
+    phase_legend = ['<g class="phase-legend">']
+    for key, (label, span, accent, tint, dark) in PHASES.items():
+        phase_legend.append(R(lx, LEGEND_Y - 10, 12, 12, fill=accent, rx=2))
         lx += 18
-        legend1.append(T(lx, LEGEND1, label, size=11, fill=TEXT, weight="500"))
-        lx += len(label) * 5.6 + 20
-    legend1.append("</g>")
-    p.append("".join(legend1))
-    lx = PAD
-    p.append(R(lx, LEGEND2 - 10, 22, 11, fill="#3F5566", rx=2))
-    p.append(T(lx + 30, LEGEND2, "Driving chain (no float)", size=11, fill=MUTED))
+        phase_legend.append(T(lx, LEGEND_Y, label, size=11, fill=TEXT, weight="500"))
+        lx += len(label) * 5.6 + 22
+    phase_legend.append("</g>")
+    p.append("".join(phase_legend))
+    p.append(f'<rect x="{n(lx)}" y="{n(LEGEND_Y - 10)}" width="22" height="12" rx="2" '
+             f'fill="{PHASES[1][3]}" stroke="{PHASES[1][2]}" stroke-width="1.2"/>')
+    p.append(T(lx + 30, LEGEND_Y, "Drafting / parallel task", size=11, fill=MUTED))
     lx += 30 + 25 * 5.6 + 22
-    p.append('<rect x="%s" y="%s" width="22" height="11" rx="2" fill="#C4DEED" stroke="#1F6E9C" '
-             'stroke-width="1.2" stroke-dasharray="4 3"/>' % (n(lx), n(LEGEND2 - 10)))
-    p.append(T(lx + 30, LEGEND2, "Float", size=11, fill=MUTED))
-    lx += 30 + 5 * 5.6 + 22
-    p.append(L(lx, LEGEND2 - 4, lx + 22, LEGEND2 - 4, stroke="#7E8C97", width=1.5, marker="ah1"))
-    p.append(T(lx + 30, LEGEND2, "Handoff", size=11, fill=MUTED))
-    lx += 30 + 7 * 5.6 + 22
-    p.append(L(lx, LEGEND2 - 4, lx + 22, LEGEND2 - 4, stroke="#A9B5BD", width=1.2, dash="4 3", marker="ah2"))
-    p.append(T(lx + 30, LEGEND2, "Overlap (starts before its dependency ends)", size=11, fill=MUTED))
-    lx += 30 + 44 * 5.6 + 22
-    p.append(diamond(lx + 6, LEGEND2 - 5, 5.5, PHASES["fin"][0], sw=1.2))
-    p.append(T(lx + 20, LEGEND2, "Milestone", size=11, fill=MUTED))
+    p.append(diamond(lx + 6, LEGEND_Y - 5, 5.5, INK, sw=1.2))
+    p.append(T(lx + 20, LEGEND_Y, "Milestone", size=11, fill=MUTED))
     lx += 20 + 9 * 5.6 + 22
-    p.append(L(lx + 6, LEGEND2 - 11, lx + 6, LEGEND2 + 3, stroke=DEADLINE, width=1.4, dash="4 3"))
-    p.append(T(lx + 16, LEGEND2, "Deadline", size=11, fill=MUTED))
+    p.append(L(lx, LEGEND_Y - 4, lx + 22, LEGEND_Y - 4, stroke=CLEAN, width=1.5, marker="ah1"))
+    p.append(T(lx + 30, LEGEND_Y, "Handoff", size=11, fill=MUTED))
+    lx += 30 + 7 * 5.6 + 22
+    p.append(L(lx, LEGEND_Y - 4, lx + 22, LEGEND_Y - 4, stroke=OVERLAP, width=1.2, dash="4 3", marker="ah2"))
+    p.append(T(lx + 30, LEGEND_Y, "Overlap (starts before its dependency ends)", size=11, fill=MUTED))
+    lx += 30 + 44 * 5.6 + 22
+    p.append(L(lx + 6, LEGEND_Y - 12, lx + 6, LEGEND_Y + 2, stroke=CRIMSON, width=1.4, dash="4 3"))
+    p.append(T(lx + 16, LEGEND_Y, "Submission", size=11, fill=MUTED))
 
-    p.append(R(PLOT_X, AXIS_TOP, PLOT_W, PLOT_TOP - AXIS_TOP, fill="#F2F4F4"))
-    for a, b, label in MONTHS:
-        x1, x2 = x_of(a), x_of(b)
-        p.append(L(x1, AXIS_TOP, x1, ROWS_BOTTOM, stroke="#D3DADD", width=1))
-        p.append(T(x1 + 9, AXIS_TOP + 14, label, size=10.5, fill=MUTED, weight="600", ls=0.3))
-    p.append(L(PLOT_RIGHT, AXIS_TOP, PLOT_RIGHT, ROWS_BOTTOM, stroke="#D3DADD", width=1))
-    p.append(L(PAD, MONTH_BOTTOM, PLOT_RIGHT, MONTH_BOTTOM, stroke=LINE, width=1))
+    for r in range(len(order)):
+        if r % 2:
+            p.append(R(PAD, ry(r), PLOT_RIGHT - PAD, ROW_H, fill=PANEL))
+    p.append(L(PAD, ry(8), PLOT_RIGHT, ry(8), stroke="#CED6D8", width=1))
 
-    for w in range(WEEKS):
-        wx = PLOT_X + w * WEEK_W
-        p.append(T(wx + 9, WEEK_LABEL_Y, f"W{w + 1}", size=11, fill=INK, weight="600"))
-        p.append(T(wx + 9, DATE_LABEL_Y, date_of(w * 7).strftime("%b %-d"), size=9, fill=FAINT))
-
-    for d in range(TOTAL_DAYS + 1):
-        dx = x_of(d)
-        if d % 7 == 0:
-            continue
-        p.append(L(dx, PLOT_TOP - 4, dx, PLOT_TOP, stroke="#E1E6E7", width=1))
-    for w in range(WEEKS + 1):
-        gx = PLOT_X + w * WEEK_W
-        p.append(L(gx, PLOT_TOP - 6, gx, PLOT_TOP, stroke="#C6CDD0", width=1))
-        if w < WEEKS:
-            p.append(L(gx, PLOT_TOP, gx, ROWS_BOTTOM, stroke=HAIR, width=1))
+    p.append(L(PLOT_RIGHT, BANNER_BOTTOM, PLOT_RIGHT, ROWS_BOTTOM, stroke=CRIMSON, width=1.4, dash="5 4"))
+    for g, label in MONTH_LINES:
+        mx = xg(g)
+        p.append(L(mx, PLOT_TOP, mx, ROWS_BOTTOM, stroke="#DCE2E3", width=1))
+        p.append(T(mx + 4, PLOT_TOP + 12, label, size=8.5, fill="#A9B4BA", weight="600"))
+    for w in range(COLS + 1):
+        gx = xg(w * 7)
+        p.append(L(gx, PLOT_TOP, gx, ROWS_BOTTOM, stroke=HAIR, width=1))
     p.append(L(PAD, PLOT_TOP, PLOT_RIGHT, PLOT_TOP, stroke=LINE, width=1))
     p.append(L(PAD, ROWS_BOTTOM, PLOT_RIGHT, ROWS_BOTTOM, stroke=LINE, width=1))
-    p.append(L(PLOT_X, AXIS_TOP, PLOT_X, ROWS_BOTTOM, stroke=LINE, width=1))
+    p.append(L(PLOT_X, BANNER_TOP, PLOT_X, ROWS_BOTTOM, stroke=LINE, width=1))
 
-    for i in range(len(order)):
-        if i % 2:
-            p.append(R(PAD, ry(i), PLOT_RIGHT - PAD, ROW_H, fill=PANEL))
+    for key, (label, span, accent, tint, dark) in PHASES.items():
+        x1 = PLOT_X if key == 1 else xb
+        x2 = xb if key == 1 else PLOT_RIGHT
+        p.append(R(x1, BANNER_TOP, x2 - x1, BANNER_H, fill=tint))
+        p.append(R(x1, BANNER_BOTTOM - 2, x2 - x1, 2, fill=accent))
+        p.append(T(x1 + 10, BANNER_TOP + 16, label, size=12, fill=dark, weight="700"))
+        p.append(T(x1 + 10 + len(label) * 7.2 + 12, BANNER_TOP + 16, span, size=10, fill=MUTED, weight="500"))
+    p.append(L(PLOT_X, BANNER_BOTTOM, PLOT_RIGHT, BANNER_BOTTOM, stroke=LINE, width=1))
 
-    channel_k = {}
+    p.append(L(xb - 3, BANNER_TOP, xb - 3, ROWS_BOTTOM, stroke="#BFC7CA", width=1))
+    p.append(L(xb + 3, BANNER_TOP, xb + 3, ROWS_BOTTOM, stroke="#BFC7CA", width=1))
+    p.append(R(xb - 9, BANNER_BOTTOM, 18, PLOT_TOP - BANNER_BOTTOM, fill="#FCFDFC"))
+    p.append(L(xb - 4, PLOT_TOP - 4, xb + 2, BANNER_BOTTOM + 5, stroke=FAINT, width=1.3))
+    p.append(L(xb + 2, PLOT_TOP - 4, xb + 8, BANNER_BOTTOM + 5, stroke=FAINT, width=1.3))
+
+    for w in range(COLS):
+        wx = xg(w * 7)
+        phase = 1 if w < P1_WEEKS else 2
+        local = w if phase == 1 else w - P1_WEEKS
+        p.append(T(wx + 7, WEEK_Y, f"W{local + 1}", size=10.5, fill=INK, weight="600"))
+        p.append(T(wx + 7, DATE_Y, gdate(w * 7, phase).strftime("%b %-d"), size=8.5, fill=FAINT))
+    for d in range(COLS * 7):
+        if d % 7 == 0:
+            continue
+        p.append(L(xg(d), PLOT_TOP - 4, xg(d), PLOT_TOP, stroke="#E1E6E7", width=1))
+    for w in range(COLS + 1):
+        p.append(L(xg(w * 7), PLOT_TOP - 6, xg(w * 7), PLOT_TOP, stroke="#C6CDD0", width=1))
+
     for pred_id, succ_ids in succ.items():
-        pred = dates[pred_id]
+        pred = by_id[pred_id]
         overlap_k = 0
         for sid in succ_ids:
-            s = dates[sid]
-            x1 = bar_right(pred)
-            yc1 = bar_y(pred) + BAR_H // 2
-            xs = x_of(s["start"])
-            yc2 = bar_y(s) + BAR_H // 2
+            s = by_id[sid]
+            if s["kind"] == "milestone":
+                mx = xg(s["point"])
+                if pred["kind"] == "milestone":
+                    continue
+                if anchor(pred)[0] <= mx - 14:
+                    path = f"M{n(bar_right(pred))} {n(yc(pred))} H{n(mx - 8)}"
+                else:
+                    path = f"M{n(mx)} {n(bar_y(pred) + BAR_H)} V{n(yc(s) - 8)}"
+                p.append(f'<path class="dep clean" data-from="{pred_id}" data-to="{sid}" '
+                         f'd="{path}" marker-end="url(#ah1)"/>')
+                continue
+            x1, yc1 = anchor(pred)
+            xs = bar_left(s)
+            yc2 = yc(s)
             gap = xs - x1
-            if gap >= 0:
-                ck = channel_k.get(sid, 0)
-                channel_k[sid] = ck + 1
-                xv = (xs - 12 if gap >= 24 else x1) - 8 * ck
-                path = f"M{n(x1)} {n(yc1)} H{n(xv)} V{n(yc2)} H{n(xs - 1)}"
+            if pred["kind"] == "milestone":
+                tx = min(max(x1 + 14, xs + 10), bar_right(s) - 10)
+                if xs >= x1 + 20:
+                    path = f"M{n(x1)} {n(yc1)} H{n(xs - 12)} V{n(yc2)} H{n(xs - 1)}"
+                else:
+                    path = f"M{n(x1)} {n(yc1)} H{n(tx)} V{n(bar_y(s) - 2)}"
+                p.append(f'<path class="dep clean" data-from="{pred_id}" data-to="{sid}" '
+                         f'd="{path}" marker-end="url(#ah1)"/>')
+            elif gap >= 24:
+                path = f"M{n(x1)} {n(yc1)} H{n(xs - 12 - 8 * overlap_k)} V{n(yc2)} H{n(xs - 1)}"
+                p.append(f'<path class="dep clean" data-from="{pred_id}" data-to="{sid}" '
+                         f'd="{path}" marker-end="url(#ah1)"/>')
+            elif gap >= 0:
+                path = f"M{n(x1)} {n(yc1)} H{n(x1 - 8 * overlap_k)} V{n(yc2)} H{n(xs - 1)}"
                 p.append(f'<path class="dep clean" data-from="{pred_id}" data-to="{sid}" '
                          f'd="{path}" marker-end="url(#ah1)"/>')
             else:
@@ -329,52 +387,53 @@ def build_svg():
                          f'd="{path}" marker-end="url(#ah2)"/>')
 
     for t in order:
-        key = t["phase"]
-        label, fill, tint, dark = PHASES[key]
-        status = "crit" if t["critical"] else "float"
+        if t["kind"] == "milestone":
+            continue
+        phase = t["phase"]
+        label, span, accent, tint, dark = PHASES[phase]
         by = bar_y(t)
-        bx = x_of(t["start"])
-        bw = (t["end"] - t["start"]) * WEEK_W / 7 - 3
-        if t["critical"]:
-            bar = R(bx, by, bw, BAR_H, fill=fill, rx=3, cls="bx")
-            lbl_fill = "#FFFFFF"
-            dur_fill = "#E4EAEE"
+        bx = bar_left(t)
+        bw = bar_width(t) - 3
+        if t["kind"] == "core":
+            bar = R(bx, by, bw, BAR_H, fill=accent, rx=3, cls="bx")
+            lbl_fill, dur_fill = "#FFFFFF", "#E4EAEE"
         else:
             bar = (f'<rect x="{n(bx)}" y="{n(by)}" width="{n(bw)}" height="{n(BAR_H)}" rx="3" '
-                   f'fill="{tint}" stroke="{fill}" stroke-width="1.2" stroke-dasharray="5 3" class="bx"/>')
-            lbl_fill = INK
-            dur_fill = MUTED
-        dur_label = T(bx + bw - 8, by + 15, f"{t['dur']}w", cls="dur", fill=dur_fill, anchor="end")
-        p.append(f'<g class="bar" data-task="{t["id"]}" data-phase="{key}" data-tip="{tip_html(t)}">'
+                   f'fill="{tint}" stroke="{accent}" stroke-width="1.2" class="bx"/>')
+            lbl_fill, dur_fill = INK, MUTED
+        dur_label = T(bx + bw - 8, by + 14, f"{t['dur']}w", cls="dur", fill=dur_fill, anchor="end")
+        p.append(f'<g class="bar" data-task="{t["id"]}" data-phase="{phase}" data-tip="{tip_html(t)}">'
                  f'{bar}'
-                 f'{T(bx + 9, by + 15, t["id"], cls="lbl", fill=lbl_fill)}'
+                 f'{T(bx + 9, by + 14, t["id"], cls="lbl", fill=lbl_fill)}'
                  f'{dur_label}'
                  f"</g>")
-        if not t["critical"]:
-            p.append(T(bx + 6, by + BAR_H + 10, f"float {t['float'] // 7}w", size=9.5, fill=FAINT, weight="500"))
 
-    p.append(T(PAD + 4, WEEK_LABEL_Y, "ID", size=10.5, fill=FAINT, weight="600"))
-    p.append(T(PAD + ID_W, WEEK_LABEL_Y, "Task", size=10.5, fill=FAINT, weight="600"))
-    p.append(T(PLOT_X - 12, WEEK_LABEL_Y, "Weeks", size=10.5, fill=FAINT, weight="600", anchor="end"))
+    for t in order:
+        if t["kind"] != "milestone":
+            continue
+        phase = t["phase"]
+        label, span, accent, tint, dark = PHASES[phase]
+        mx = xg(t["point"])
+        my = yc(t)
+        p.append(f'<g class="ms" data-task="{t["id"]}" data-phase="{phase}" data-tip="{tip_html(t)}">'
+                 f'{diamond(mx, my, 6, INK)}'
+                 f'{T(mx - 10, my + 3, t["date"].strftime("%-d %b %Y"), size=9.5, fill=dark, weight="600", anchor="end")}'
+                 f'</g>')
+
+    p.append(T(PAD + 4, WEEK_Y, "ID", size=10.5, fill=FAINT, weight="600"))
+    p.append(T(PAD + ID_W, WEEK_Y, "Task", size=10.5, fill=FAINT, weight="600"))
+    p.append(T(PLOT_X - 12, WEEK_Y, "Weeks", size=10.5, fill=FAINT, weight="600", anchor="end"))
     for i, t in enumerate(order):
         lines = wrap_name(t["name"])
-        p.append(T(PAD + 4, ry(i) + 25, t["id"], size=11.5, weight="600"))
+        weeks = "\u2014" if t["kind"] == "milestone" else f"{t['dur']}w"
+        p.append(T(PAD + 4, ry(i) + 24, t["id"], size=11.5, weight="600"))
         if len(lines) == 1:
-            p.append(T(PAD + ID_W, ry(i) + 25, lines[0], size=10.5, fill=TEXT))
+            p.append(T(PAD + ID_W, ry(i) + 24, lines[0], size=10.5, fill=TEXT))
         else:
-            p.append(T(PAD + ID_W, ry(i) + 17, lines[0], size=10.5, fill=TEXT))
-            p.append(T(PAD + ID_W, ry(i) + 31, lines[1], size=10.5, fill=TEXT))
-        p.append(T(PLOT_X - 12, ry(i) + 25, f"{t['dur']}w", size=10.5, fill=MUTED, weight="500", anchor="end"))
+            p.append(T(PAD + ID_W, ry(i) + 16, lines[0], size=10.5, fill=TEXT))
+            p.append(T(PAD + ID_W, ry(i) + 29, lines[1], size=10.5, fill=TEXT))
+        p.append(T(PLOT_X - 12, ry(i) + 24, weeks, size=10.5, fill=MUTED, weight="500", anchor="end"))
 
-    dl = x_of(TOTAL_DAYS)
-    p.append(L(dl, MONTH_BOTTOM, dl, ROWS_BOTTOM, stroke=DEADLINE, width=1.4, dash="5 4"))
-    p.append(f'<circle cx="{n(dl)}" cy="{n(MONTH_BOTTOM)}" r="3" fill="{DEADLINE}"/>')
-    p.append(T(dl - 10, PLOT_TOP + 16, "Final deadline \u2014 Sat 19 Dec 2026", size=10, fill=DEADLINE, weight="600", anchor="end"))
-    ms = dates["6.2"]
-    p.append(diamond(dl, bar_y(ms) + BAR_H // 2, 5.5, PHASES["fin"][0]))
-
-    p.append(T(PAD, HEIGHT - 14, "Weeks run Sunday to Saturday. Dashed handoffs mark tasks that start before their dependency finishes.", size=9.5, fill=FAINT))
-    p.append(T(PLOT_RIGHT, HEIGHT - 14, "Generated from the project schedule table.", size=9.5, fill=FAINT, anchor="end"))
     p.append("</svg>")
     return "\n".join(p)
 
@@ -385,7 +444,7 @@ HTML = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>BioAgeVision \u2014 project implementation plan</title>
+<title>BioAgeVision \u2014 two-phase project plan</title>
 <style>
   @font-face {
     font-family: 'Archivo';
@@ -405,15 +464,15 @@ HTML = """<!DOCTYPE html>
     font-family: 'Archivo', 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .shell { max-width: 1440px; margin: 0 auto; padding: 24px 26px 56px; }
+  .shell { max-width: 2100px; margin: 0 auto; padding: 24px 26px 56px; }
   .chrome { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 14px; }
   .controls { min-width: 280px; }
   .hint { margin: 0 0 9px; font-size: 11.5px; line-height: 1.45; color: var(--faint); }
   .chips { display: flex; flex-wrap: wrap; gap: 7px; }
   .chip {
-    display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
     background: #fff; border: 1px solid var(--line); border-radius: 2px;
-    font: 500 12px/1 inherit; color: var(--ink); cursor: pointer;
+    font: 500 12.5px/1 inherit; color: var(--ink); cursor: pointer;
   }
   .chip:hover { border-color: var(--hardline); }
   .chip .sw { width: 10px; height: 10px; border-radius: 1px; background: var(--c); }
@@ -429,7 +488,7 @@ HTML = """<!DOCTYPE html>
   .btn.primary:hover { background: #0E1A23; }
   .sheet { background: var(--sheet); border: 1px solid var(--line); }
   .scroll { overflow-x: auto; }
-  .sheet svg { display: block; width: 100%; height: auto; min-width: 1020px; }
+  .sheet svg { display: block; width: 100%; height: auto; min-width: 1400px; }
   .sheet svg .phase-legend { display: none; }
   #tip {
     position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none;
@@ -470,31 +529,8 @@ HTML = """<!DOCTYPE html>
 (function () {
   var svg = document.querySelector('.sheet svg');
   var tip = document.getElementById('tip');
-  var phaseOf = {};
-  document.querySelectorAll('.bar').forEach(function (g) {
-    phaseOf[g.getAttribute('data-task')] = g.getAttribute('data-phase');
-  });
-  var active = new Set();
-  function apply() {
-    var on = active.size > 0;
-    document.querySelectorAll('.bar').forEach(function (g) {
-      g.classList.toggle('dim', on && !active.has(g.getAttribute('data-phase')));
-    });
-    document.querySelectorAll('.dep').forEach(function (p) {
-      var a = phaseOf[p.getAttribute('data-from')];
-      var b = phaseOf[p.getAttribute('data-to')];
-      p.classList.toggle('dim', on && !(active.has(a) || active.has(b)));
-    });
-  }
-  document.querySelectorAll('.chip').forEach(function (c) {
-    c.addEventListener('click', function () {
-      var p = c.getAttribute('data-phase');
-      if (active.has(p)) { active.delete(p); } else { active.add(p); }
-      c.setAttribute('aria-pressed', active.has(p) ? 'true' : 'false');
-      apply();
-    });
-  });
-  document.querySelectorAll('.bar').forEach(function (g) {
+  var dimmable = '.bar, .ms';
+  document.querySelectorAll(dimmable).forEach(function (g) {
     g.addEventListener('mouseenter', function () {
       tip.innerHTML = g.getAttribute('data-tip');
       tip.classList.add('on');
@@ -508,6 +544,27 @@ HTML = """<!DOCTYPE html>
       tip.style.top = y + 'px';
     });
     g.addEventListener('mouseleave', function () { tip.classList.remove('on'); });
+  });
+  var active = new Set();
+  function apply() {
+    var on = active.size > 0;
+    document.querySelectorAll(dimmable).forEach(function (g) {
+      g.classList.toggle('dim', on && !active.has(g.getAttribute('data-phase')));
+    });
+    document.querySelectorAll('.dep').forEach(function (p) {
+      var a = p.getAttribute('data-from'), b = p.getAttribute('data-to');
+      var pa = a.charAt(0) === 'M' ? a.charAt(1) : a.charAt(0);
+      var pb = b.charAt(0) === 'M' ? b.charAt(1) : b.charAt(0);
+      p.classList.toggle('dim', on && !(active.has(pa) && active.has(pb)));
+    });
+  }
+  document.querySelectorAll('.chip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var p = c.getAttribute('data-phase');
+      if (active.has(p)) { active.delete(p); } else { active.add(p); }
+      c.setAttribute('aria-pressed', active.has(p) ? 'true' : 'false');
+      apply();
+    });
   });
   document.getElementById('print').addEventListener('click', function () { window.print(); });
   document.getElementById('png').addEventListener('click', function () {
@@ -539,14 +596,13 @@ HTML = """<!DOCTYPE html>
 
 def build_chips():
     out = []
-    for key, (label, fill, tint, dark) in PHASES.items():
-        out.append(f'<button class="chip" data-phase="{key}" aria-pressed="false" style="--c:{fill}">'
+    for key, (label, span, accent, tint, dark) in PHASES.items():
+        out.append(f'<button class="chip" data-phase="{key}" aria-pressed="false" style="--c:{accent}">'
                    f'<span class="sw"></span>{esc(label)}</button>')
     return "\n      ".join(out)
 
 
 def main():
-    order = sorted(TASKS, key=lambda t: (t["sw"], t["ew"], t["id"]))
     svg = build_svg()
     page = HTML.replace("__CHIPS__", build_chips()).replace("__SVG__", svg)
     Path("gantt.svg").write_text(svg, encoding="utf-8")
@@ -560,11 +616,14 @@ def main():
         print("wrote gantt.png (2x, via rsvg-convert)")
     except (FileNotFoundError, subprocess.CalledProcessError):
         print("rsvg-convert not found \u2014 use the Download PNG button in gantt.html instead")
-    print(f"wrote gantt.svg, gantt.html, index.html \u00b7 {WEEKS} weeks, {len(TASKS)} tasks")
-    for t in order:
-        a, b = date_of((t["sw"] - 1) * 7), date_of(t["ew"] * 7 - 1)
-        flag = "driving" if t["float"] <= 0 else f"float {t['float'] // 7}w"
-        print(f"  {t['id']:<4} {a:%a %-d %b} \u2013 {b:%a %-d %b}  {t['dur']}w  {flag:10}  {t['name']}")
+    print(f"wrote gantt.svg, gantt.html, index.html \u00b7 {COLS} week columns, {len(TASKS)} rows")
+    for t in sorted(TASKS, key=lambda x: (x["phase"], x["start"], x["id"])):
+        if t["kind"] == "milestone":
+            print(f"  {t['id']:<3} milestone                 {t['date']:%a %-d %b %Y}   {t['name']}")
+        else:
+            a, b = gdate(t["start"], t["phase"]), gdate(t["end"] - 1, t["phase"])
+            print(f"  {t['id']:<3} {a:%a %-d %b %Y} \u2013 {b:%a %-d %b %Y}  {t['dur']}w  "
+                  f"{'core' if t['kind'] == 'core' else 'draft':5}  {t['name']}")
 
 
 if __name__ == "__main__":

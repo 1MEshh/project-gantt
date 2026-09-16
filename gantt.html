@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>BioAgeVision — project implementation plan</title>
+<title>BioAgeVision — two-phase project plan</title>
 <style>
   @font-face {
     font-family: 'Archivo';
@@ -24,15 +24,15 @@
     font-family: 'Archivo', 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .shell { max-width: 1440px; margin: 0 auto; padding: 24px 26px 56px; }
+  .shell { max-width: 2100px; margin: 0 auto; padding: 24px 26px 56px; }
   .chrome { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 14px; }
   .controls { min-width: 280px; }
   .hint { margin: 0 0 9px; font-size: 11.5px; line-height: 1.45; color: var(--faint); }
   .chips { display: flex; flex-wrap: wrap; gap: 7px; }
   .chip {
-    display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
     background: #fff; border: 1px solid var(--line); border-radius: 2px;
-    font: 500 12px/1 inherit; color: var(--ink); cursor: pointer;
+    font: 500 12.5px/1 inherit; color: var(--ink); cursor: pointer;
   }
   .chip:hover { border-color: var(--hardline); }
   .chip .sw { width: 10px; height: 10px; border-radius: 1px; background: var(--c); }
@@ -48,7 +48,7 @@
   .btn.primary:hover { background: #0E1A23; }
   .sheet { background: var(--sheet); border: 1px solid var(--line); }
   .scroll { overflow-x: auto; }
-  .sheet svg { display: block; width: 100%; height: auto; min-width: 1020px; }
+  .sheet svg { display: block; width: 100%; height: auto; min-width: 1400px; }
   .sheet svg .phase-legend { display: none; }
   #tip {
     position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none;
@@ -75,305 +75,460 @@
   <div class="chrome">
     <div class="controls">
       <p class="hint">Select a phase to isolate it on the chart. Select it again to show everything.</p>
-      <div class="chips"><button class="chip" data-phase="def" aria-pressed="false" style="--c:#1D3D5C"><span class="sw"></span>Definition</button>
-      <button class="chip" data-phase="res" aria-pressed="false" style="--c:#1F6E9C"><span class="sw"></span>Research &amp; Analysis</button>
-      <button class="chip" data-phase="req" aria-pressed="false" style="--c:#2A8E88"><span class="sw"></span>Requirements</button>
-      <button class="chip" data-phase="des" aria-pressed="false" style="--c:#6E9A38"><span class="sw"></span>Architecture &amp; Design</button>
-      <button class="chip" data-phase="doc" aria-pressed="false" style="--c:#C08A2E"><span class="sw"></span>Documentation</button>
-      <button class="chip" data-phase="fin" aria-pressed="false" style="--c:#8E3F6B"><span class="sw"></span>Finalization</button></div>
+      <div class="chips"><button class="chip" data-phase="1" aria-pressed="false" style="--c:#1D4E7C"><span class="sw"></span>Phase 1</button>
+      <button class="chip" data-phase="2" aria-pressed="false" style="--c:#2A7D74"><span class="sw"></span>Phase 2</button></div>
     </div>
     <div class="actions">
       <button class="btn" id="print">Print / Save PDF</button>
       <button class="btn primary" id="png">Download PNG</button>
     </div>
   </div>
-  <div class="sheet"><div class="scroll"><svg xmlns="http://www.w3.org/2000/svg" width="1368" height="810" viewBox="0 0 1368 810" font-family="Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="BioAgeVision project implementation plan, Gantt chart">
-<title>BioAgeVision project implementation plan</title>
+  <div class="sheet"><div class="scroll"><svg xmlns="http://www.w3.org/2000/svg" width="2042" height="813" viewBox="0 0 2042 813" font-family="Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="BioAgeVision two-phase project plan, Gantt chart">
+<title>BioAgeVision two-phase project plan</title>
 <defs><style>
 text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif}
 .dep{fill:none;stroke-linecap:square}
 .clean{stroke:#7E8C97;stroke-width:1.5}
 .overlap{stroke:#A9B5BD;stroke-width:1.2;stroke-dasharray:4 3}
-.bar{cursor:pointer;transition:opacity .15s ease}
-.dep.dim,.bar.dim{opacity:.12}
-.bar .lbl{font-size:11px;font-weight:700}
-.bar .dur{font-size:9.5px;font-weight:500}
+.bar,.ms{cursor:pointer;transition:opacity .15s ease}
+.dep.dim,.bar.dim,.ms.dim{opacity:.12}
+.bar .lbl{font-size:10.5px;font-weight:700}
+.bar .dur{font-size:9px;font-weight:500}
 .bar:hover .bx{stroke:#16232E;stroke-width:2}
+.ms:hover polygon{stroke:#16232E;stroke-width:2}
 </style>
 <marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#7E8C97"/></marker>
 <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#A9B5BD"/></marker>
 </defs>
-<rect x="0" y="0" width="1368" height="810" fill="#FCFDFC"/>
-<text x="28" y="46" font-size="30" fill="#16232E" font-weight="700" text-anchor="start" letter-spacing="-0.4">BioAgeVision</text>
-<text x="28" y="72" font-size="12" fill="#5B6B77" font-weight="400" text-anchor="start">Implementation plan for the 14-week semester, Sunday 13 September to Saturday 19 December 2026.</text>
-<g class="phase-legend"><rect x="28" y="94" width="12" height="12" fill="#1D3D5C" rx="2"/><text x="46" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Definition</text><rect x="122" y="94" width="12" height="12" fill="#1F6E9C" rx="2"/><text x="140" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Research &amp; Analysis</text><rect x="266.4" y="94" width="12" height="12" fill="#2A8E88" rx="2"/><text x="284.4" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Requirements</text><rect x="371.6" y="94" width="12" height="12" fill="#6E9A38" rx="2"/><text x="389.6" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Architecture &amp; Design</text><rect x="527.2" y="94" width="12" height="12" fill="#C08A2E" rx="2"/><text x="545.2" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Documentation</text><rect x="638" y="94" width="12" height="12" fill="#8E3F6B" rx="2"/><text x="656" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Finalization</text></g>
-<rect x="28" y="118" width="22" height="11" fill="#3F5566" rx="2"/>
-<text x="58" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Driving chain (no float)</text>
-<rect x="220" y="118" width="22" height="11" rx="2" fill="#C4DEED" stroke="#1F6E9C" stroke-width="1.2" stroke-dasharray="4 3"/>
-<text x="250" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Float</text>
-<line x1="300" y1="124" x2="322" y2="124" stroke="#7E8C97" stroke-width="1.5" marker-end="url(#ah1)"/>
-<text x="330" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Handoff</text>
-<line x1="391.2" y1="124" x2="413.2" y2="124" stroke="#A9B5BD" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
-<text x="421.2" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Overlap (starts before its dependency ends)</text>
-<polygon points="695.6,117.5 701.1,123 695.6,128.5 690.1,123" fill="Finalization" stroke="#FFFFFF" stroke-width="1.2"/>
-<text x="709.6" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Milestone</text>
-<line x1="788" y1="117" x2="788" y2="131" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="4 3"/>
-<text x="798" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Deadline</text>
-<rect x="328" y="150" width="1008" height="62" fill="#F2F4F4"/>
-<line x1="328" y1="150" x2="328" y2="772" stroke="#D3DADD" stroke-width="1"/>
-<text x="337" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">September</text>
-<line x1="513.1" y1="150" x2="513.1" y2="772" stroke="#D3DADD" stroke-width="1"/>
-<text x="522.1" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">October</text>
-<line x1="832" y1="150" x2="832" y2="772" stroke="#D3DADD" stroke-width="1"/>
-<text x="841" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">November</text>
-<line x1="1140.6" y1="150" x2="1140.6" y2="772" stroke="#D3DADD" stroke-width="1"/>
-<text x="1149.6" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">December</text>
-<line x1="1336" y1="150" x2="1336" y2="772" stroke="#D3DADD" stroke-width="1"/>
-<line x1="28" y1="170" x2="1336" y2="170" stroke="#D9DEDF" stroke-width="1"/>
-<text x="337" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W1</text>
-<text x="337" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 13</text>
-<text x="409" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W2</text>
-<text x="409" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 20</text>
-<text x="481" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W3</text>
-<text x="481" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 27</text>
-<text x="553" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W4</text>
-<text x="553" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 4</text>
-<text x="625" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W5</text>
-<text x="625" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 11</text>
-<text x="697" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W6</text>
-<text x="697" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 18</text>
-<text x="769" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W7</text>
-<text x="769" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 25</text>
-<text x="841" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W8</text>
-<text x="841" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 1</text>
-<text x="913" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W9</text>
-<text x="913" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 8</text>
-<text x="985" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W10</text>
-<text x="985" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 15</text>
-<text x="1057" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W11</text>
-<text x="1057" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 22</text>
-<text x="1129" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W12</text>
-<text x="1129" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 29</text>
-<text x="1201" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W13</text>
-<text x="1201" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 6</text>
-<text x="1273" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W14</text>
-<text x="1273" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 13</text>
-<line x1="338.3" y1="208" x2="338.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="348.6" y1="208" x2="348.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="358.9" y1="208" x2="358.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="369.1" y1="208" x2="369.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="379.4" y1="208" x2="379.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="389.7" y1="208" x2="389.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="410.3" y1="208" x2="410.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="420.6" y1="208" x2="420.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="430.9" y1="208" x2="430.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="441.1" y1="208" x2="441.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="451.4" y1="208" x2="451.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="461.7" y1="208" x2="461.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="482.3" y1="208" x2="482.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="492.6" y1="208" x2="492.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="502.9" y1="208" x2="502.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="513.1" y1="208" x2="513.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="523.4" y1="208" x2="523.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="533.7" y1="208" x2="533.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="554.3" y1="208" x2="554.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="564.6" y1="208" x2="564.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="574.9" y1="208" x2="574.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="585.1" y1="208" x2="585.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="595.4" y1="208" x2="595.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="605.7" y1="208" x2="605.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="626.3" y1="208" x2="626.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="636.6" y1="208" x2="636.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="646.9" y1="208" x2="646.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="657.1" y1="208" x2="657.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="667.4" y1="208" x2="667.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="677.7" y1="208" x2="677.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="698.3" y1="208" x2="698.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="708.6" y1="208" x2="708.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="718.9" y1="208" x2="718.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="729.1" y1="208" x2="729.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="739.4" y1="208" x2="739.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="749.7" y1="208" x2="749.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="770.3" y1="208" x2="770.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="780.6" y1="208" x2="780.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="790.9" y1="208" x2="790.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="801.1" y1="208" x2="801.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="811.4" y1="208" x2="811.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="821.7" y1="208" x2="821.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="842.3" y1="208" x2="842.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="852.6" y1="208" x2="852.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="862.9" y1="208" x2="862.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="873.1" y1="208" x2="873.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="883.4" y1="208" x2="883.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="893.7" y1="208" x2="893.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="914.3" y1="208" x2="914.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="924.6" y1="208" x2="924.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="934.9" y1="208" x2="934.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="945.1" y1="208" x2="945.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="955.4" y1="208" x2="955.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="965.7" y1="208" x2="965.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="986.3" y1="208" x2="986.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="996.6" y1="208" x2="996.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1006.9" y1="208" x2="1006.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1017.1" y1="208" x2="1017.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1027.4" y1="208" x2="1027.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1037.7" y1="208" x2="1037.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1058.3" y1="208" x2="1058.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1068.6" y1="208" x2="1068.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1078.9" y1="208" x2="1078.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1089.1" y1="208" x2="1089.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1099.4" y1="208" x2="1099.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1109.7" y1="208" x2="1109.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1130.3" y1="208" x2="1130.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1140.6" y1="208" x2="1140.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1150.9" y1="208" x2="1150.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1161.1" y1="208" x2="1161.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1171.4" y1="208" x2="1171.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1181.7" y1="208" x2="1181.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1202.3" y1="208" x2="1202.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1212.6" y1="208" x2="1212.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1222.9" y1="208" x2="1222.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1233.1" y1="208" x2="1233.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1243.4" y1="208" x2="1243.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1253.7" y1="208" x2="1253.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1274.3" y1="208" x2="1274.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1284.6" y1="208" x2="1284.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1294.9" y1="208" x2="1294.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1305.1" y1="208" x2="1305.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1315.4" y1="208" x2="1315.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="1325.7" y1="208" x2="1325.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
-<line x1="328" y1="206" x2="328" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="328" y1="212" x2="328" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="400" y1="206" x2="400" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="400" y1="212" x2="400" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="472" y1="206" x2="472" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="472" y1="212" x2="472" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="544" y1="206" x2="544" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="544" y1="212" x2="544" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="616" y1="206" x2="616" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="616" y1="212" x2="616" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="688" y1="206" x2="688" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="688" y1="212" x2="688" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="760" y1="206" x2="760" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="760" y1="212" x2="760" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="832" y1="206" x2="832" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="832" y1="212" x2="832" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="904" y1="206" x2="904" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="904" y1="212" x2="904" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="976" y1="206" x2="976" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="976" y1="212" x2="976" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="1048" y1="206" x2="1048" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="1048" y1="212" x2="1048" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="1120" y1="206" x2="1120" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="1120" y1="212" x2="1120" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="1192" y1="206" x2="1192" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="1192" y1="212" x2="1192" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="1264" y1="206" x2="1264" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="1264" y1="212" x2="1264" y2="772" stroke="#E8ECEC" stroke-width="1"/>
-<line x1="1336" y1="206" x2="1336" y2="212" stroke="#C6CDD0" stroke-width="1"/>
-<line x1="28" y1="212" x2="1336" y2="212" stroke="#D9DEDF" stroke-width="1"/>
-<line x1="28" y1="772" x2="1336" y2="772" stroke="#D9DEDF" stroke-width="1"/>
-<line x1="328" y1="150" x2="328" y2="772" stroke="#D9DEDF" stroke-width="1"/>
-<rect x="28" y="252" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="332" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="412" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="492" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="572" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="652" width="1308" height="40" fill="#F5F7F7"/>
-<rect x="28" y="732" width="1308" height="40" fill="#F5F7F7"/>
-<path class="dep clean" data-from="1.1" data-to="2.1" d="M469 232 H469 V312 H471" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="1.1" data-to="2.2" d="M469 232 H532 V392 H543" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="1.1" data-to="5.1" d="M469 232 H469 V352 H471" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="1.2" data-to="5.1" d="M541 272 H557 V339" marker-end="url(#ah2)"/>
-<path class="dep clean" data-from="2.1" data-to="2.3" d="M613 312 H613 V432 H615" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="2.1" data-to="5.2" d="M613 312 H613 V472 H615" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="2.2" data-to="2.3" d="M757 392 H773 V419" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="2.2" data-to="5.2" d="M757 392 H783 V459" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="2.3" data-to="3.1" d="M829 432 H845 V499" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="3.1" data-to="3.2" d="M901 512 H917 V539" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="3.2" data-to="4.1" d="M973 552 H989 V579" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="4.1" data-to="4.2" d="M1117 592 H1133 V659" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="4.1" data-to="5.3" d="M1117 592 H1143 V619" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="4.2" data-to="5.3" d="M1189 672 H1179 V619" marker-end="url(#ah2)"/>
-<path class="dep clean" data-from="5.1" data-to="6.1" d="M613 352 H1180 V712 H1191" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="5.2" data-to="6.1" d="M901 472 H1172 V712 H1191" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="5.3" data-to="6.1" d="M1189 632 H1173 V712 H1191" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="6.1" data-to="6.2" d="M1333 712 H1323 V739" marker-end="url(#ah2)"/>
-<g class="bar" data-task="1.1" data-phase="def" data-tip="&lt;b&gt;1.1 — Define problem statement &amp; objectives&lt;/b&gt;&lt;br&gt;Sun 13 Sep – Sat 26 Sep 2026&lt;br&gt;W1–W2 · 2 weeks · Definition&lt;br&gt;Depends on: none · Driving chain (no float)"><rect x="328" y="221" width="141" height="22" fill="#1D3D5C" rx="3" class="bx"/><text x="337" y="236" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.1</text><text x="461" y="236" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="1.2" data-phase="def" data-tip="&lt;b&gt;1.2 — Identify required resources&lt;/b&gt;&lt;br&gt;Sun 20 Sep – Sat 3 Oct 2026&lt;br&gt;W2–W3 · 2 weeks · Definition&lt;br&gt;Depends on: none · Driving chain (no float)"><rect x="400" y="261" width="141" height="22" fill="#1D3D5C" rx="3" class="bx"/><text x="409" y="276" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.2</text><text x="533" y="276" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="2.1" data-phase="res" data-tip="&lt;b&gt;2.1 — Research biological vs chronological age markers&lt;/b&gt;&lt;br&gt;Sun 27 Sep – Sat 10 Oct 2026&lt;br&gt;W3–W4 · 2 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 1.1 · Driving chain (no float)"><rect x="472" y="301" width="141" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="481" y="316" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.1</text><text x="605" y="316" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="5.1" data-phase="doc" data-tip="&lt;b&gt;5.1 — Draft Chapter 1: Introduction&lt;/b&gt;&lt;br&gt;Sun 27 Sep – Sat 10 Oct 2026&lt;br&gt;W3–W4 · 2 weeks · Documentation&lt;br&gt;Depends on: 1.1, 1.2 · Float: 8 weeks"><rect x="472" y="341" width="141" height="22" rx="3" fill="#F1E2C2" stroke="#C08A2E" stroke-width="1.2" stroke-dasharray="5 3" class="bx"/><text x="481" y="356" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.1</text><text x="605" y="356" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<text x="478" y="373" font-size="9.5" fill="#8C9AA5" font-weight="500" text-anchor="start">float 8w</text>
-<g class="bar" data-task="2.2" data-phase="res" data-tip="&lt;b&gt;2.2 — Analyze CNNs, Vision Transformers &amp; XAI&lt;/b&gt;&lt;br&gt;Sun 4 Oct – Sat 24 Oct 2026&lt;br&gt;W4–W6 · 3 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 1.1 · Driving chain (no float)"><rect x="544" y="381" width="213" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="553" y="396" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.2</text><text x="749" y="396" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="2.3" data-phase="res" data-tip="&lt;b&gt;2.3 — Critical analysis and comparison of models&lt;/b&gt;&lt;br&gt;Sun 11 Oct – Sat 31 Oct 2026&lt;br&gt;W5–W7 · 3 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 2.1, 2.2 · Driving chain (no float)"><rect x="616" y="421" width="213" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="625" y="436" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.3</text><text x="821" y="436" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="5.2" data-phase="doc" data-tip="&lt;b&gt;5.2 — Draft Chapter 2: Literature Review&lt;/b&gt;&lt;br&gt;Sun 11 Oct – Sat 7 Nov 2026&lt;br&gt;W5–W8 · 4 weeks · Documentation&lt;br&gt;Depends on: 2.1, 2.2 · Float: 4 weeks"><rect x="616" y="461" width="285" height="22" rx="3" fill="#F1E2C2" stroke="#C08A2E" stroke-width="1.2" stroke-dasharray="5 3" class="bx"/><text x="625" y="476" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.2</text><text x="893" y="476" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">4w</text></g>
-<text x="622" y="493" font-size="9.5" fill="#8C9AA5" font-weight="500" text-anchor="start">float 4w</text>
-<g class="bar" data-task="3.1" data-phase="req" data-tip="&lt;b&gt;3.1 — Define system requirements for BioAgeVision&lt;/b&gt;&lt;br&gt;Sun 25 Oct – Sat 7 Nov 2026&lt;br&gt;W7–W8 · 2 weeks · Requirements&lt;br&gt;Depends on: 2.3 · Driving chain (no float)"><rect x="760" y="501" width="141" height="22" fill="#2A8E88" rx="3" class="bx"/><text x="769" y="516" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.1</text><text x="893" y="516" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="3.2" data-phase="req" data-tip="&lt;b&gt;3.2 — Determine dataset constraints and facial imagery&lt;/b&gt;&lt;br&gt;Sun 1 Nov – Sat 14 Nov 2026&lt;br&gt;W8–W9 · 2 weeks · Requirements&lt;br&gt;Depends on: 3.1 · Driving chain (no float)"><rect x="832" y="541" width="141" height="22" fill="#2A8E88" rx="3" class="bx"/><text x="841" y="556" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.2</text><text x="965" y="556" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="4.1" data-phase="des" data-tip="&lt;b&gt;4.1 — Design deep neural network architecture&lt;/b&gt;&lt;br&gt;Sun 8 Nov – Sat 28 Nov 2026&lt;br&gt;W9–W11 · 3 weeks · Architecture &amp; Design&lt;br&gt;Depends on: 3.2 · Driving chain (no float)"><rect x="904" y="581" width="213" height="22" fill="#6E9A38" rx="3" class="bx"/><text x="913" y="596" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.1</text><text x="1109" y="596" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="5.3" data-phase="doc" data-tip="&lt;b&gt;5.3 — Draft Chapter 3: Methodology &amp; Design&lt;/b&gt;&lt;br&gt;Sun 8 Nov – Sat 5 Dec 2026&lt;br&gt;W9–W12 · 4 weeks · Documentation&lt;br&gt;Depends on: 4.1, 4.2 · Driving chain (no float)"><rect x="904" y="621" width="285" height="22" fill="#C08A2E" rx="3" class="bx"/><text x="913" y="636" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">5.3</text><text x="1181" y="636" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">4w</text></g>
-<g class="bar" data-task="4.2" data-phase="des" data-tip="&lt;b&gt;4.2 — Design high-frequency spatial filters &amp; XAI&lt;/b&gt;&lt;br&gt;Sun 15 Nov – Sat 5 Dec 2026&lt;br&gt;W10–W12 · 3 weeks · Architecture &amp; Design&lt;br&gt;Depends on: 4.1 · Driving chain (no float)"><rect x="976" y="661" width="213" height="22" fill="#6E9A38" rx="3" class="bx"/><text x="985" y="676" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.2</text><text x="1181" y="676" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="6.1" data-phase="fin" data-tip="&lt;b&gt;6.1 — Group proof-reading &amp; formatting checks&lt;/b&gt;&lt;br&gt;Sun 6 Dec – Sat 19 Dec 2026&lt;br&gt;W13–W14 · 2 weeks · Finalization&lt;br&gt;Depends on: 5.1, 5.2, 5.3 · Driving chain (no float)"><rect x="1192" y="701" width="141" height="22" fill="#8E3F6B" rx="3" class="bx"/><text x="1201" y="716" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.1</text><text x="1325" y="716" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="6.2" data-phase="fin" data-tip="&lt;b&gt;6.2 — Final Submission&lt;/b&gt;&lt;br&gt;Sun 13 Dec – Sat 19 Dec 2026&lt;br&gt;W14 · 1 weeks · Finalization&lt;br&gt;Depends on: 6.1 · Driving chain (no float)"><rect x="1264" y="741" width="69" height="22" fill="#8E3F6B" rx="3" class="bx"/><text x="1273" y="756" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.2</text><text x="1325" y="756" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">1w</text></g>
-<text x="32" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">ID</text>
-<text x="76" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">Task</text>
-<text x="316" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="end">Weeks</text>
-<text x="32" y="237" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.1</text>
-<text x="76" y="237" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Define problem statement &amp; objectives</text>
-<text x="316" y="237" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="277" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.2</text>
-<text x="76" y="277" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Identify required resources</text>
-<text x="316" y="277" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="317" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.1</text>
-<text x="76" y="309" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Research biological vs chronological</text>
-<text x="76" y="323" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">age markers</text>
-<text x="316" y="317" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="357" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.1</text>
-<text x="76" y="357" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 1: Introduction</text>
-<text x="316" y="357" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="397" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.2</text>
-<text x="76" y="389" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Analyze CNNs, Vision Transformers &amp;</text>
-<text x="76" y="403" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">XAI</text>
-<text x="316" y="397" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="437" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.3</text>
-<text x="76" y="429" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Critical analysis and comparison of</text>
-<text x="76" y="443" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">models</text>
-<text x="316" y="437" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="477" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.2</text>
-<text x="76" y="477" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 2: Literature Review</text>
-<text x="316" y="477" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
-<text x="32" y="517" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.1</text>
-<text x="76" y="509" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Define system requirements for</text>
-<text x="76" y="523" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">BioAgeVision</text>
-<text x="316" y="517" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="557" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.2</text>
-<text x="76" y="549" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Determine dataset constraints and</text>
-<text x="76" y="563" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">facial imagery</text>
-<text x="316" y="557" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="597" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.1</text>
-<text x="76" y="589" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Design deep neural network</text>
-<text x="76" y="603" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">architecture</text>
-<text x="316" y="597" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="637" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.3</text>
-<text x="76" y="637" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 3: Methodology &amp; Design</text>
-<text x="316" y="637" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
-<text x="32" y="677" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.2</text>
-<text x="76" y="669" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Design high-frequency spatial filters</text>
-<text x="76" y="683" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">&amp; XAI</text>
-<text x="316" y="677" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="717" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.1</text>
-<text x="76" y="709" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Group proof-reading &amp; formatting</text>
-<text x="76" y="723" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">checks</text>
-<text x="316" y="717" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="757" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.2</text>
-<text x="76" y="757" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Final Submission</text>
-<text x="316" y="757" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">1w</text>
-<line x1="1336" y1="170" x2="1336" y2="772" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="5 4"/>
-<circle cx="1336" cy="170" r="3" fill="#A32B2B"/>
-<text x="1326" y="228" font-size="10" fill="#A32B2B" font-weight="600" text-anchor="end">Final deadline — Sat 19 Dec 2026</text>
-<polygon points="1336,746.5 1341.5,752 1336,757.5 1330.5,752" fill="Finalization" stroke="#FFFFFF" stroke-width="1.5"/>
-<text x="28" y="796" font-size="9.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Weeks run Sunday to Saturday. Dashed handoffs mark tasks that start before their dependency finishes.</text>
-<text x="1336" y="796" font-size="9.5" fill="#8C9AA5" font-weight="400" text-anchor="end">Generated from the project schedule table.</text>
+<rect x="0" y="0" width="2042" height="813" fill="#FCFDFC"/>
+<text x="28" y="44" font-size="30" fill="#16232E" font-weight="700" text-anchor="start" letter-spacing="-0.4">BioAgeVision</text>
+<g class="phase-legend"><rect x="28" y="72" width="12" height="12" fill="#1D4E7C" rx="2"/><text x="46" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 1</text><rect x="107.2" y="72" width="12" height="12" fill="#2A7D74" rx="2"/><text x="125.2" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 2</text></g>
+<rect x="186.4" y="72" width="22" height="12" rx="2" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2"/>
+<text x="216.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Drafting / parallel task</text>
+<polygon points="384.4,71.5 389.9,77 384.4,82.5 378.9,77" fill="#16232E" stroke="#FFFFFF" stroke-width="1.2"/>
+<text x="398.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Milestone</text>
+<line x1="470.8" y1="78" x2="492.8" y2="78" stroke="#7E8C97" stroke-width="1.5" marker-end="url(#ah1)"/>
+<text x="500.8" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Handoff</text>
+<line x1="562" y1="78" x2="584" y2="78" stroke="#A9B5BD" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+<text x="592" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Overlap (starts before its dependency ends)</text>
+<line x1="866.4" y1="70" x2="866.4" y2="84" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="876.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Submission</text>
+<rect x="28" y="209" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="285" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="361" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="437" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="513" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="589" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="665" width="1982" height="38" fill="#F5F7F7"/>
+<rect x="28" y="741" width="1982" height="38" fill="#F5F7F7"/>
+<line x1="28" y1="475" x2="2010" y2="475" stroke="#CED6D8" stroke-width="1"/>
+<line x1="2010" y1="128" x2="2010" y2="779" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="5 4"/>
+<line x1="477.1" y1="171" x2="477.1" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="481.1" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Oct</text>
+<line x1="734" y1="171" x2="734" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="738" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Nov</text>
+<line x1="982.6" y1="171" x2="982.6" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="986.6" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Dec</text>
+<line x1="1289.1" y1="171" x2="1289.1" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="1293.1" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Feb</text>
+<line x1="1521.1" y1="171" x2="1521.1" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="1525.1" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Mar</text>
+<line x1="1778" y1="171" x2="1778" y2="779" stroke="#DCE2E3" stroke-width="1"/>
+<text x="1782" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Apr</text>
+<line x1="328" y1="171" x2="328" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="386" y1="171" x2="386" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="444" y1="171" x2="444" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="502" y1="171" x2="502" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="560" y1="171" x2="560" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="618" y1="171" x2="618" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="676" y1="171" x2="676" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="734" y1="171" x2="734" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="792" y1="171" x2="792" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="850" y1="171" x2="850" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="908" y1="171" x2="908" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="966" y1="171" x2="966" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1024" y1="171" x2="1024" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1082" y1="171" x2="1082" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1140" y1="171" x2="1140" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1198" y1="171" x2="1198" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1256" y1="171" x2="1256" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1314" y1="171" x2="1314" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1372" y1="171" x2="1372" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1430" y1="171" x2="1430" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1488" y1="171" x2="1488" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1546" y1="171" x2="1546" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1604" y1="171" x2="1604" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1662" y1="171" x2="1662" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1720" y1="171" x2="1720" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1778" y1="171" x2="1778" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1836" y1="171" x2="1836" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1894" y1="171" x2="1894" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1952" y1="171" x2="1952" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="2010" y1="171" x2="2010" y2="779" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="28" y1="171" x2="2010" y2="171" stroke="#D9DEDF" stroke-width="1"/>
+<line x1="28" y1="779" x2="2010" y2="779" stroke="#D9DEDF" stroke-width="1"/>
+<line x1="328" y1="104" x2="328" y2="779" stroke="#D9DEDF" stroke-width="1"/>
+<rect x="328" y="104" width="812" height="24" fill="#D7E3EE"/>
+<rect x="328" y="126" width="812" height="2" fill="#1D4E7C"/>
+<text x="338" y="120" font-size="12" fill="#143A5C" font-weight="700" text-anchor="start">Phase 1</text>
+<text x="400.4" y="120" font-size="10" fill="#5B6B77" font-weight="500" text-anchor="start">Sep 13 – Dec 19, 2026</text>
+<rect x="1140" y="104" width="870" height="24" fill="#D3E6E3"/>
+<rect x="1140" y="126" width="870" height="2" fill="#2A7D74"/>
+<text x="1150" y="120" font-size="12" fill="#1F5E57" font-weight="700" text-anchor="start">Phase 2</text>
+<text x="1212.4" y="120" font-size="10" fill="#5B6B77" font-weight="500" text-anchor="start">Jan 14 – Apr 29, 2027</text>
+<line x1="328" y1="128" x2="2010" y2="128" stroke="#D9DEDF" stroke-width="1"/>
+<line x1="1137" y1="104" x2="1137" y2="779" stroke="#BFC7CA" stroke-width="1"/>
+<line x1="1143" y1="104" x2="1143" y2="779" stroke="#BFC7CA" stroke-width="1"/>
+<rect x="1131" y="128" width="18" height="43" fill="#FCFDFC"/>
+<line x1="1136" y1="167" x2="1142" y2="133" stroke="#8C9AA5" stroke-width="1.3"/>
+<line x1="1142" y1="167" x2="1148" y2="133" stroke="#8C9AA5" stroke-width="1.3"/>
+<text x="335" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W1</text>
+<text x="335" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 13</text>
+<text x="393" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W2</text>
+<text x="393" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 20</text>
+<text x="451" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W3</text>
+<text x="451" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 27</text>
+<text x="509" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W4</text>
+<text x="509" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 4</text>
+<text x="567" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W5</text>
+<text x="567" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 11</text>
+<text x="625" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W6</text>
+<text x="625" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 18</text>
+<text x="683" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W7</text>
+<text x="683" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 25</text>
+<text x="741" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W8</text>
+<text x="741" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 1</text>
+<text x="799" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W9</text>
+<text x="799" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 8</text>
+<text x="857" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W10</text>
+<text x="857" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 15</text>
+<text x="915" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W11</text>
+<text x="915" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 22</text>
+<text x="973" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W12</text>
+<text x="973" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 29</text>
+<text x="1031" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W13</text>
+<text x="1031" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 6</text>
+<text x="1089" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W14</text>
+<text x="1089" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 13</text>
+<text x="1147" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W1</text>
+<text x="1147" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Jan 14</text>
+<text x="1205" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W2</text>
+<text x="1205" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Jan 21</text>
+<text x="1263" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W3</text>
+<text x="1263" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Jan 28</text>
+<text x="1321" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W4</text>
+<text x="1321" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Feb 4</text>
+<text x="1379" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W5</text>
+<text x="1379" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Feb 11</text>
+<text x="1437" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W6</text>
+<text x="1437" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Feb 18</text>
+<text x="1495" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W7</text>
+<text x="1495" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Feb 25</text>
+<text x="1553" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W8</text>
+<text x="1553" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Mar 4</text>
+<text x="1611" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W9</text>
+<text x="1611" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Mar 11</text>
+<text x="1669" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W10</text>
+<text x="1669" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Mar 18</text>
+<text x="1727" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W11</text>
+<text x="1727" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Mar 25</text>
+<text x="1785" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W12</text>
+<text x="1785" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Apr 1</text>
+<text x="1843" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W13</text>
+<text x="1843" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Apr 8</text>
+<text x="1901" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W14</text>
+<text x="1901" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Apr 15</text>
+<text x="1959" y="147" font-size="10.5" fill="#16232E" font-weight="600" text-anchor="start">W15</text>
+<text x="1959" y="161" font-size="8.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Apr 22</text>
+<line x1="336.3" y1="167" x2="336.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="344.6" y1="167" x2="344.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="352.9" y1="167" x2="352.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="361.1" y1="167" x2="361.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="369.4" y1="167" x2="369.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="377.7" y1="167" x2="377.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="394.3" y1="167" x2="394.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="402.6" y1="167" x2="402.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="410.9" y1="167" x2="410.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="419.1" y1="167" x2="419.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="427.4" y1="167" x2="427.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="435.7" y1="167" x2="435.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="452.3" y1="167" x2="452.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="460.6" y1="167" x2="460.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="468.9" y1="167" x2="468.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="477.1" y1="167" x2="477.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="485.4" y1="167" x2="485.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="493.7" y1="167" x2="493.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="510.3" y1="167" x2="510.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="518.6" y1="167" x2="518.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="526.9" y1="167" x2="526.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="535.1" y1="167" x2="535.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="543.4" y1="167" x2="543.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="551.7" y1="167" x2="551.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="568.3" y1="167" x2="568.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="576.6" y1="167" x2="576.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="584.9" y1="167" x2="584.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="593.1" y1="167" x2="593.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="601.4" y1="167" x2="601.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="609.7" y1="167" x2="609.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="626.3" y1="167" x2="626.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="634.6" y1="167" x2="634.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="642.9" y1="167" x2="642.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="651.1" y1="167" x2="651.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="659.4" y1="167" x2="659.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="667.7" y1="167" x2="667.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="684.3" y1="167" x2="684.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="692.6" y1="167" x2="692.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="700.9" y1="167" x2="700.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="709.1" y1="167" x2="709.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="717.4" y1="167" x2="717.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="725.7" y1="167" x2="725.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="742.3" y1="167" x2="742.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="750.6" y1="167" x2="750.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="758.9" y1="167" x2="758.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="767.1" y1="167" x2="767.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="775.4" y1="167" x2="775.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="783.7" y1="167" x2="783.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="800.3" y1="167" x2="800.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="808.6" y1="167" x2="808.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="816.9" y1="167" x2="816.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="825.1" y1="167" x2="825.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="833.4" y1="167" x2="833.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="841.7" y1="167" x2="841.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="858.3" y1="167" x2="858.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="866.6" y1="167" x2="866.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="874.9" y1="167" x2="874.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="883.1" y1="167" x2="883.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="891.4" y1="167" x2="891.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="899.7" y1="167" x2="899.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="916.3" y1="167" x2="916.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="924.6" y1="167" x2="924.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="932.9" y1="167" x2="932.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="941.1" y1="167" x2="941.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="949.4" y1="167" x2="949.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="957.7" y1="167" x2="957.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="974.3" y1="167" x2="974.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="982.6" y1="167" x2="982.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="990.9" y1="167" x2="990.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="999.1" y1="167" x2="999.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1007.4" y1="167" x2="1007.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1015.7" y1="167" x2="1015.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1032.3" y1="167" x2="1032.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1040.6" y1="167" x2="1040.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1048.9" y1="167" x2="1048.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1057.1" y1="167" x2="1057.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1065.4" y1="167" x2="1065.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1073.7" y1="167" x2="1073.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1090.3" y1="167" x2="1090.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1098.6" y1="167" x2="1098.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1106.9" y1="167" x2="1106.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1115.1" y1="167" x2="1115.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1123.4" y1="167" x2="1123.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1131.7" y1="167" x2="1131.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1148.3" y1="167" x2="1148.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1156.6" y1="167" x2="1156.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1164.9" y1="167" x2="1164.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1173.1" y1="167" x2="1173.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1181.4" y1="167" x2="1181.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1189.7" y1="167" x2="1189.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1206.3" y1="167" x2="1206.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1214.6" y1="167" x2="1214.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1222.9" y1="167" x2="1222.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1231.1" y1="167" x2="1231.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1239.4" y1="167" x2="1239.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1247.7" y1="167" x2="1247.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1264.3" y1="167" x2="1264.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1272.6" y1="167" x2="1272.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1280.9" y1="167" x2="1280.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1289.1" y1="167" x2="1289.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1297.4" y1="167" x2="1297.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1305.7" y1="167" x2="1305.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1322.3" y1="167" x2="1322.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1330.6" y1="167" x2="1330.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1338.9" y1="167" x2="1338.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1347.1" y1="167" x2="1347.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1355.4" y1="167" x2="1355.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1363.7" y1="167" x2="1363.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1380.3" y1="167" x2="1380.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1388.6" y1="167" x2="1388.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1396.9" y1="167" x2="1396.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1405.1" y1="167" x2="1405.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1413.4" y1="167" x2="1413.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1421.7" y1="167" x2="1421.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1438.3" y1="167" x2="1438.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1446.6" y1="167" x2="1446.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1454.9" y1="167" x2="1454.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1463.1" y1="167" x2="1463.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1471.4" y1="167" x2="1471.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1479.7" y1="167" x2="1479.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1496.3" y1="167" x2="1496.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1504.6" y1="167" x2="1504.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1512.9" y1="167" x2="1512.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1521.1" y1="167" x2="1521.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1529.4" y1="167" x2="1529.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1537.7" y1="167" x2="1537.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1554.3" y1="167" x2="1554.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1562.6" y1="167" x2="1562.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1570.9" y1="167" x2="1570.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1579.1" y1="167" x2="1579.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1587.4" y1="167" x2="1587.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1595.7" y1="167" x2="1595.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1612.3" y1="167" x2="1612.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1620.6" y1="167" x2="1620.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1628.9" y1="167" x2="1628.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1637.1" y1="167" x2="1637.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1645.4" y1="167" x2="1645.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1653.7" y1="167" x2="1653.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1670.3" y1="167" x2="1670.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1678.6" y1="167" x2="1678.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1686.9" y1="167" x2="1686.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1695.1" y1="167" x2="1695.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1703.4" y1="167" x2="1703.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1711.7" y1="167" x2="1711.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1728.3" y1="167" x2="1728.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1736.6" y1="167" x2="1736.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1744.9" y1="167" x2="1744.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1753.1" y1="167" x2="1753.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1761.4" y1="167" x2="1761.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1769.7" y1="167" x2="1769.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1786.3" y1="167" x2="1786.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1794.6" y1="167" x2="1794.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1802.9" y1="167" x2="1802.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1811.1" y1="167" x2="1811.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1819.4" y1="167" x2="1819.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1827.7" y1="167" x2="1827.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1844.3" y1="167" x2="1844.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1852.6" y1="167" x2="1852.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1860.9" y1="167" x2="1860.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1869.1" y1="167" x2="1869.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1877.4" y1="167" x2="1877.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1885.7" y1="167" x2="1885.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1902.3" y1="167" x2="1902.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1910.6" y1="167" x2="1910.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1918.9" y1="167" x2="1918.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1927.1" y1="167" x2="1927.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1935.4" y1="167" x2="1935.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1943.7" y1="167" x2="1943.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1960.3" y1="167" x2="1960.3" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1968.6" y1="167" x2="1968.6" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1976.9" y1="167" x2="1976.9" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1985.1" y1="167" x2="1985.1" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1993.4" y1="167" x2="1993.4" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="2001.7" y1="167" x2="2001.7" y2="171" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="328" y1="165" x2="328" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="386" y1="165" x2="386" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="444" y1="165" x2="444" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="502" y1="165" x2="502" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="560" y1="165" x2="560" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="618" y1="165" x2="618" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="676" y1="165" x2="676" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="734" y1="165" x2="734" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="792" y1="165" x2="792" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="850" y1="165" x2="850" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="908" y1="165" x2="908" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="966" y1="165" x2="966" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1024" y1="165" x2="1024" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1082" y1="165" x2="1082" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1140" y1="165" x2="1140" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1198" y1="165" x2="1198" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1256" y1="165" x2="1256" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1314" y1="165" x2="1314" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1372" y1="165" x2="1372" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1430" y1="165" x2="1430" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1488" y1="165" x2="1488" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1546" y1="165" x2="1546" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1604" y1="165" x2="1604" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1662" y1="165" x2="1662" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1720" y1="165" x2="1720" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1778" y1="165" x2="1778" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1836" y1="165" x2="1836" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1894" y1="165" x2="1894" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1952" y1="165" x2="1952" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="2010" y1="165" x2="2010" y2="171" stroke="#C6CDD0" stroke-width="1"/>
+<path class="dep overlap" data-from="1.0" data-to="1.1" d="M441 190 H457 V216" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="1.0" data-to="2.0" d="M441 190 H482 V266 H501" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="2.0" data-to="2.1" d="M731 266 H747 V292" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="2.0" data-to="3.0" d="M731 266 H772 V342 H791" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="3.0" data-to="3.1" d="M963 342 H979 V368" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.1" data-to="4.0" d="M1079 380 H1095 V406" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="4.0" data-to="M1" d="M1140 428 V448" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="M1" data-to="5.0" d="M1140 456 H1154 V482" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="5.0" data-to="5.1" d="M1311 494 H1327 V520" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="5.0" data-to="6.0" d="M1311 494 H1352 V570 H1371" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="6.0" data-to="6.1" d="M1717 570 H1733 V596" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="6.1" data-to="7.0" d="M1833 608 H1849 V634" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="7.0" data-to="7.1" d="M1891 646 H1907 V672" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="7.1" data-to="8.0" d="M1949 684 H1965 V710" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="8.0" data-to="M2" d="M2010 732 V752" marker-end="url(#ah1)"/>
+<g class="bar" data-task="1.0" data-phase="1" data-tip="&lt;b&gt;1.0 — Project Initialization &amp; Scope&lt;/b&gt;&lt;br&gt;Sun 13 Sep 2026 – Sat 26 Sep 2026&lt;br&gt;W1–W2 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: none"><rect x="328" y="180" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="337" y="194" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.0</text><text x="433" y="194" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="1.1" data-phase="1" data-tip="&lt;b&gt;1.1 — Draft Chapter 1: Introduction&lt;/b&gt;&lt;br&gt;Sun 20 Sep 2026 – Sat 3 Oct 2026&lt;br&gt;W2–W3 · 2 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 1.0"><rect x="386" y="218" width="113" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="395" y="232" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">1.1</text><text x="491" y="232" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="2.0" data-phase="1" data-tip="&lt;b&gt;2.0 — Literature Research&lt;/b&gt;&lt;br&gt;Sun 4 Oct 2026 – Sat 31 Oct 2026&lt;br&gt;W4–W7 · 4 weeks · Phase 1&lt;br&gt;Core task · Depends on: 1.0"><rect x="502" y="256" width="229" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="511" y="270" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.0</text><text x="723" y="270" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">4w</text></g>
+<g class="bar" data-task="2.1" data-phase="1" data-tip="&lt;b&gt;2.1 — Draft Chapter 2: Literature Review&lt;/b&gt;&lt;br&gt;Sun 25 Oct 2026 – Sat 14 Nov 2026&lt;br&gt;W7–W9 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 2.0"><rect x="676" y="294" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="685" y="308" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">2.1</text><text x="839" y="308" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="3.0" data-phase="1" data-tip="&lt;b&gt;3.0 — System Requirements Analysis&lt;/b&gt;&lt;br&gt;Sun 8 Nov 2026 – Sat 28 Nov 2026&lt;br&gt;W9–W11 · 3 weeks · Phase 1&lt;br&gt;Core task · Depends on: 2.0"><rect x="792" y="332" width="171" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="801" y="346" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.0</text><text x="955" y="346" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="3.1" data-phase="1" data-tip="&lt;b&gt;3.1 — Draft Chapter 3: Requirements/Analysis&lt;/b&gt;&lt;br&gt;Sun 22 Nov 2026 – Sat 12 Dec 2026&lt;br&gt;W11–W13 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 3.0"><rect x="908" y="370" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="917" y="384" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">3.1</text><text x="1071" y="384" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="4.0" data-phase="1" data-tip="&lt;b&gt;4.0 — Phase One Final Review &amp; Polish&lt;/b&gt;&lt;br&gt;Sun 6 Dec 2026 – Sat 19 Dec 2026&lt;br&gt;W13–W14 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.1"><rect x="1024" y="408" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="1033" y="422" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.0</text><text x="1129" y="422" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="5.0" data-phase="2" data-tip="&lt;b&gt;5.0 — System Design&lt;/b&gt;&lt;br&gt;Thu 14 Jan 2027 – Wed 3 Feb 2027&lt;br&gt;W1–W3 · 3 weeks · Phase 2&lt;br&gt;Core task · Depends on: M1"><rect x="1140" y="484" width="171" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1149" y="498" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">5.0</text><text x="1303" y="498" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="5.1" data-phase="2" data-tip="&lt;b&gt;5.1 — Draft Chapter 4: Design&lt;/b&gt;&lt;br&gt;Thu 28 Jan 2027 – Wed 17 Feb 2027&lt;br&gt;W3–W5 · 3 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 5.0"><rect x="1256" y="522" width="171" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1265" y="536" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.1</text><text x="1419" y="536" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="6.0" data-phase="2" data-tip="&lt;b&gt;6.0 — Implementation &amp; App Deployment&lt;/b&gt;&lt;br&gt;Thu 11 Feb 2027 – Wed 24 Mar 2027&lt;br&gt;W5–W10 · 6 weeks · Phase 2&lt;br&gt;Core task · Depends on: 5.0"><rect x="1372" y="560" width="345" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1381" y="574" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.0</text><text x="1709" y="574" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">6w</text></g>
+<g class="bar" data-task="6.1" data-phase="2" data-tip="&lt;b&gt;6.1 — Draft Chapter 5: Implementation &amp; Test&lt;/b&gt;&lt;br&gt;Thu 18 Mar 2027 – Wed 7 Apr 2027&lt;br&gt;W10–W12 · 3 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 6.0"><rect x="1662" y="598" width="171" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1671" y="612" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">6.1</text><text x="1825" y="612" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="7.0" data-phase="2" data-tip="&lt;b&gt;7.0 — Model Evaluation &amp; Heatmaps&lt;/b&gt;&lt;br&gt;Thu 25 Mar 2027 – Wed 14 Apr 2027&lt;br&gt;W11–W13 · 3 weeks · Phase 2&lt;br&gt;Core task · Depends on: 6.1"><rect x="1720" y="636" width="171" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1729" y="650" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">7.0</text><text x="1883" y="650" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="7.1" data-phase="2" data-tip="&lt;b&gt;7.1 — Draft Ch. 6 &amp; 7: Evaluation &amp; Conclusion&lt;/b&gt;&lt;br&gt;Thu 8 Apr 2027 – Wed 21 Apr 2027&lt;br&gt;W13–W14 · 2 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 7.0"><rect x="1836" y="674" width="113" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1845" y="688" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">7.1</text><text x="1941" y="688" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="8.0" data-phase="2" data-tip="&lt;b&gt;8.0 — Final Report Review&lt;/b&gt;&lt;br&gt;Thu 15 Apr 2027 – Wed 28 Apr 2027&lt;br&gt;W14–W15 · 2 weeks · Phase 2&lt;br&gt;Core task · Depends on: 7.1"><rect x="1894" y="712" width="113" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1903" y="726" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">8.0</text><text x="1999" y="726" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="ms" data-task="M1" data-phase="1" data-tip="&lt;b&gt;M1 — Phase 1 Final Submission&lt;/b&gt;&lt;br&gt;End of Phase 1 · Sat 19 Dec 2026&lt;br&gt;Milestone · Phase 1&lt;br&gt;Depends on: 4.0"><polygon points="1140,450 1146,456 1140,462 1134,456" fill="#16232E" stroke="#FFFFFF" stroke-width="1.5"/><text x="1130" y="459" font-size="9.5" fill="#143A5C" font-weight="600" text-anchor="end">19 Dec 2026</text></g>
+<g class="ms" data-task="M2" data-phase="2" data-tip="&lt;b&gt;M2 — Phase 2 Final Submission&lt;/b&gt;&lt;br&gt;End of Phase 2 · Thu 29 Apr 2027&lt;br&gt;Milestone · Phase 2&lt;br&gt;Depends on: 8.0"><polygon points="2010,754 2016,760 2010,766 2004,760" fill="#16232E" stroke="#FFFFFF" stroke-width="1.5"/><text x="2000" y="763" font-size="9.5" fill="#1F5E57" font-weight="600" text-anchor="end">29 Apr 2027</text></g>
+<text x="32" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">ID</text>
+<text x="76" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">Task</text>
+<text x="316" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="end">Weeks</text>
+<text x="32" y="195" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.0</text>
+<text x="76" y="195" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Project Initialization &amp; Scope</text>
+<text x="316" y="195" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="233" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.1</text>
+<text x="76" y="233" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 1: Introduction</text>
+<text x="316" y="233" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="271" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.0</text>
+<text x="76" y="271" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Literature Research</text>
+<text x="316" y="271" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="32" y="309" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.1</text>
+<text x="76" y="309" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 2: Literature Review</text>
+<text x="316" y="309" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="347" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.0</text>
+<text x="76" y="347" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">System Requirements Analysis</text>
+<text x="316" y="347" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="385" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.1</text>
+<text x="76" y="377" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 3:</text>
+<text x="76" y="390" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Requirements/Analysis</text>
+<text x="316" y="385" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="423" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.0</text>
+<text x="76" y="423" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase One Final Review &amp; Polish</text>
+<text x="316" y="423" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="461" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">M1</text>
+<text x="76" y="461" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase 1 Final Submission</text>
+<text x="316" y="461" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">—</text>
+<text x="32" y="499" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.0</text>
+<text x="76" y="499" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">System Design</text>
+<text x="316" y="499" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="537" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.1</text>
+<text x="76" y="537" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 4: Design</text>
+<text x="316" y="537" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="575" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.0</text>
+<text x="76" y="575" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Implementation &amp; App Deployment</text>
+<text x="316" y="575" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">6w</text>
+<text x="32" y="613" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.1</text>
+<text x="76" y="605" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 5: Implementation &amp;</text>
+<text x="76" y="618" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Test</text>
+<text x="316" y="613" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="651" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">7.0</text>
+<text x="76" y="651" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Model Evaluation &amp; Heatmaps</text>
+<text x="316" y="651" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="689" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">7.1</text>
+<text x="76" y="681" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Ch. 6 &amp; 7: Evaluation &amp;</text>
+<text x="76" y="694" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Conclusion</text>
+<text x="316" y="689" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="727" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">8.0</text>
+<text x="76" y="727" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Final Report Review</text>
+<text x="316" y="727" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="765" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">M2</text>
+<text x="76" y="765" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase 2 Final Submission</text>
+<text x="316" y="765" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">—</text>
 </svg></div></div>
 </div>
 <div id="tip"></div>
@@ -381,31 +536,8 @@ text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif
 (function () {
   var svg = document.querySelector('.sheet svg');
   var tip = document.getElementById('tip');
-  var phaseOf = {};
-  document.querySelectorAll('.bar').forEach(function (g) {
-    phaseOf[g.getAttribute('data-task')] = g.getAttribute('data-phase');
-  });
-  var active = new Set();
-  function apply() {
-    var on = active.size > 0;
-    document.querySelectorAll('.bar').forEach(function (g) {
-      g.classList.toggle('dim', on && !active.has(g.getAttribute('data-phase')));
-    });
-    document.querySelectorAll('.dep').forEach(function (p) {
-      var a = phaseOf[p.getAttribute('data-from')];
-      var b = phaseOf[p.getAttribute('data-to')];
-      p.classList.toggle('dim', on && !(active.has(a) || active.has(b)));
-    });
-  }
-  document.querySelectorAll('.chip').forEach(function (c) {
-    c.addEventListener('click', function () {
-      var p = c.getAttribute('data-phase');
-      if (active.has(p)) { active.delete(p); } else { active.add(p); }
-      c.setAttribute('aria-pressed', active.has(p) ? 'true' : 'false');
-      apply();
-    });
-  });
-  document.querySelectorAll('.bar').forEach(function (g) {
+  var dimmable = '.bar, .ms';
+  document.querySelectorAll(dimmable).forEach(function (g) {
     g.addEventListener('mouseenter', function () {
       tip.innerHTML = g.getAttribute('data-tip');
       tip.classList.add('on');
@@ -419,6 +551,27 @@ text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif
       tip.style.top = y + 'px';
     });
     g.addEventListener('mouseleave', function () { tip.classList.remove('on'); });
+  });
+  var active = new Set();
+  function apply() {
+    var on = active.size > 0;
+    document.querySelectorAll(dimmable).forEach(function (g) {
+      g.classList.toggle('dim', on && !active.has(g.getAttribute('data-phase')));
+    });
+    document.querySelectorAll('.dep').forEach(function (p) {
+      var a = p.getAttribute('data-from'), b = p.getAttribute('data-to');
+      var pa = a.charAt(0) === 'M' ? a.charAt(1) : a.charAt(0);
+      var pb = b.charAt(0) === 'M' ? b.charAt(1) : b.charAt(0);
+      p.classList.toggle('dim', on && !(active.has(pa) && active.has(pb)));
+    });
+  }
+  document.querySelectorAll('.chip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var p = c.getAttribute('data-phase');
+      if (active.has(p)) { active.delete(p); } else { active.add(p); }
+      c.setAttribute('aria-pressed', active.has(p) ? 'true' : 'false');
+      apply();
+    });
   });
   document.getElementById('print').addEventListener('click', function () { window.print(); });
   document.getElementById('png').addEventListener('click', function () {
