@@ -1,158 +1,288 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1348" height="550" viewBox="0 0 1348 550" role="img" aria-label="Project Implementation Plan (Gantt Chart)">
+<svg xmlns="http://www.w3.org/2000/svg" width="1368" height="810" viewBox="0 0 1368 810" font-family="Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="BioAgeVision project implementation plan, Gantt chart">
+<title>BioAgeVision project implementation plan</title>
 <defs><style>
-text{font-family:Segoe UI, Helvetica Neue, Arial, sans-serif}
-.dep{fill:none;stroke:#8b98a9;stroke-width:1.5}
-.bar{cursor:pointer}
-.bar .lbl{font-size:11.5px;font-weight:700}
-.bar .dur{font-size:10px}
-.bar:hover .b{stroke:#0f172a !important;stroke-width:2.2 !important}
-.bar:hover .lbl{font-weight:800}
-.p-init.crit .b{fill:#334155;stroke:#1e293b;stroke-width:1}
-.p-res.crit .b{fill:#1d4ed8;stroke:#1e40af;stroke-width:1}
-.p-des.crit .b{fill:#0f766e;stroke:#115e59;stroke-width:1}
-.p-doc.crit .b{fill:#b45309;stroke:#92400e;stroke-width:1}
-.p-pre.crit .b{fill:#6d28d9;stroke:#5b21b6;stroke-width:1}
-.p-init.slack .b{fill:#cbd5e1;stroke:#334155;stroke-width:1.2;stroke-dasharray:5 3}
-.p-res.slack .b{fill:#bfdbfe;stroke:#1d4ed8;stroke-width:1.2;stroke-dasharray:5 3}
-.p-des.slack .b{fill:#99f6e4;stroke:#0f766e;stroke-width:1.2;stroke-dasharray:5 3}
-.p-doc.slack .b{fill:#fde68a;stroke:#b45309;stroke-width:1.2;stroke-dasharray:5 3}
-.p-pre.slack .b{fill:#ddd6fe;stroke:#6d28d9;stroke-width:1.2;stroke-dasharray:5 3}
-.crit .lbl{fill:#ffffff}
-.slack .lbl{fill:#0f172a}
-.crit .dur{fill:#e8edf5}
-.slack .dur{fill:#475569}
-.rowband:hover{fill:#eef2f7}
+text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif}
+.dep{fill:none;stroke-linecap:square}
+.clean{stroke:#7E8C97;stroke-width:1.5}
+.overlap{stroke:#A9B5BD;stroke-width:1.2;stroke-dasharray:4 3}
+.bar{cursor:pointer;transition:opacity .15s ease}
+.dep.dim,.bar.dim{opacity:.12}
+.bar .lbl{font-size:11px;font-weight:700}
+.bar .dur{font-size:9.5px;font-weight:500}
+.bar:hover .bx{stroke:#16232E;stroke-width:2}
 </style>
-<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98a9"/></marker>
+<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#7E8C97"/></marker>
+<marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#A9B5BD"/></marker>
 </defs>
-<rect x="0" y="0" width="1348" height="550" fill="#ffffff" stroke="none"/>
-<text x="26" y="40" font-size="20" fill="#0f172a" font-weight="700" text-anchor="start">Project Implementation Plan (Gantt Chart)</text>
-<text x="26" y="64" font-size="11" fill="#475569" font-weight="400" text-anchor="start">13 September – 19 December 2026 · 14-week semester, 10-week task plan · Critical path T1 → T2 → T3 → T5 → T6 → T7 → T8</text>
-<text x="26" y="100" font-size="10" fill="#64748b" font-weight="600" text-anchor="start">Phases:</text>
-<rect x="72" y="90" width="14" height="12" fill="#334155" stroke="none" rx="2"/>
-<text x="91" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Initiation</text>
-<rect x="162" y="90" width="14" height="12" fill="#1d4ed8" stroke="none" rx="2"/>
-<text x="181" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Research</text>
-<rect x="241" y="90" width="14" height="12" fill="#0f766e" stroke="none" rx="2"/>
-<text x="260" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Design</text>
-<rect x="309" y="90" width="14" height="12" fill="#b45309" stroke="none" rx="2"/>
-<text x="328" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Documentation</text>
-<rect x="415.5" y="90" width="14" height="12" fill="#6d28d9" stroke="none" rx="2"/>
-<text x="434.5" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Presentation</text>
-<line x1="522.5" y1="91" x2="522.5" y2="103" stroke="#cbd5e1" stroke-width="1"/>
-<rect x="538.5" y="90" width="26" height="12" fill="#1d4ed8" stroke="#1e40af" rx="3"/>
-<text x="570.5" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Critical path</text>
-<rect x="658" y="90" width="26" height="12" fill="#fde68a" stroke="#b45309" rx="3"/>
-<rect x="658" y="90" width="26" height="12" fill="none" stroke="#b45309" stroke-width="1.2" stroke-dasharray="5 3" rx="3"/>
-<text x="690" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Has float</text>
-<line x1="755.5" y1="96" x2="779.5" y2="96" stroke="#8b98a9" stroke-width="1.5" marker-end="url(#ah)"/>
-<text x="787.5" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Dependency</text>
-<line x1="858.5" y1="90" x2="858.5" y2="103" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4"/>
-<text x="868.5" y="100" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Final deadline</text>
-<rect x="26" y="214" width="1292" height="42" fill="#f8fafc" stroke="none" class="rowband"/>
-<rect x="26" y="298" width="1292" height="42" fill="#f8fafc" stroke="none" class="rowband"/>
-<rect x="26" y="382" width="1292" height="42" fill="#f8fafc" stroke="none" class="rowband"/>
-<rect x="26" y="466" width="1292" height="42" fill="#f8fafc" stroke="none" class="rowband"/>
-<rect x="310" y="118" width="1008" height="54" fill="#f8fafc" stroke="none"/>
-<line x1="310" y1="172" x2="310" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="382" y1="172" x2="382" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="454" y1="172" x2="454" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="526" y1="172" x2="526" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="598" y1="172" x2="598" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="670" y1="172" x2="670" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="742" y1="172" x2="742" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="814" y1="172" x2="814" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="886" y1="172" x2="886" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="958" y1="172" x2="958" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="1030" y1="172" x2="1030" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="1102" y1="172" x2="1102" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="1174" y1="172" x2="1174" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="1246" y1="172" x2="1246" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="1318" y1="172" x2="1318" y2="508" stroke="#e6ebf1" stroke-width="1"/>
-<line x1="26" y1="172" x2="1318" y2="172" stroke="#cbd5e1" stroke-width="1"/>
-<line x1="26" y1="508" x2="1318" y2="508" stroke="#cbd5e1" stroke-width="1"/>
-<line x1="310" y1="118" x2="310" y2="508" stroke="#cbd5e1" stroke-width="1"/>
-<text x="318" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W1</text>
-<text x="318" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Sep 13</text>
-<text x="390" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W2</text>
-<text x="390" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Sep 20</text>
-<text x="462" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W3</text>
-<text x="462" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Sep 27</text>
-<text x="534" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W4</text>
-<text x="534" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Oct 4</text>
-<text x="606" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W5</text>
-<text x="606" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Oct 11</text>
-<text x="678" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W6</text>
-<text x="678" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Oct 18</text>
-<text x="750" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W7</text>
-<text x="750" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Oct 25</text>
-<text x="822" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W8</text>
-<text x="822" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Nov 1</text>
-<text x="894" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W9</text>
-<text x="894" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Nov 8</text>
-<text x="966" y="139" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start">W10</text>
-<text x="966" y="155" font-size="9" fill="#64748b" font-weight="400" text-anchor="start">Nov 15</text>
-<text x="1038" y="139" font-size="11" fill="#94a3b8" font-weight="700" text-anchor="start">W11</text>
-<text x="1038" y="155" font-size="9" fill="#94a3b8" font-weight="400" text-anchor="start">Nov 22</text>
-<text x="1110" y="139" font-size="11" fill="#94a3b8" font-weight="700" text-anchor="start">W12</text>
-<text x="1110" y="155" font-size="9" fill="#94a3b8" font-weight="400" text-anchor="start">Nov 29</text>
-<text x="1182" y="139" font-size="11" fill="#94a3b8" font-weight="700" text-anchor="start">W13</text>
-<text x="1182" y="155" font-size="9" fill="#94a3b8" font-weight="400" text-anchor="start">Dec 6</text>
-<text x="1254" y="139" font-size="11" fill="#94a3b8" font-weight="700" text-anchor="start">W14</text>
-<text x="1254" y="155" font-size="9" fill="#94a3b8" font-weight="400" text-anchor="start">Dec 13</text>
-<rect x="1030" y="172" width="288" height="336" fill="#eef2f7" stroke="none"/>
-<line x1="1030" y1="172" x2="1030" y2="508" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"/>
-<line x1="1318" y1="118" x2="1318" y2="508" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4"/>
-<text x="1310" y="187" font-size="10" fill="#b91c1c" font-weight="600" text-anchor="end">Final deadline — Sat 19 Dec 2026</text>
-<text x="1174" y="498" font-size="10" fill="#94a3b8" font-weight="400" text-anchor="middle" font-style="italic">Buffer / reserve — 4 weeks (W11–W14)</text>
-<path class="dep" d="M379 193 H393 V222" marker-end="url(#ah)"/>
-<path class="dep" d="M523 235 H537 V264" marker-end="url(#ah)"/>
-<path class="dep" d="M523 235 H547 V306" marker-end="url(#ah)"/>
-<path class="dep" d="M595 277 H609 V348" marker-end="url(#ah)"/>
-<path class="dep" d="M667 319 H876 V445 H885" marker-end="url(#ah)"/>
-<path class="dep" d="M739 361 H753 V390" marker-end="url(#ah)"/>
-<path class="dep" d="M883 403 H897 V432" marker-end="url(#ah)"/>
-<path class="dep" d="M955 445 H969 V474" marker-end="url(#ah)"/>
-<g class="bar p-init crit" data-task="T1" data-tip="&lt;b&gt;T1 — Project Initiation &amp; Scope Definition&lt;/b&gt;&lt;br&gt;Sun 13 Sep – Sat 19 Sep 2026 · 7 days (W1)&lt;br&gt;Phase: Initiation · Depends on: None&lt;br&gt;On the critical path"><rect x="310" y="181" width="69" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="320" y="197" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T1</text><text x="371" y="197" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">1w</text></g>
-<g class="bar p-res crit" data-task="T2" data-tip="&lt;b&gt;T2 — Conduct Literature Review&lt;/b&gt;&lt;br&gt;Sun 20 Sep – Sat 3 Oct 2026 · 14 days (W2–W3)&lt;br&gt;Phase: Research · Depends on: T1&lt;br&gt;On the critical path"><rect x="382" y="223" width="141" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="392" y="239" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T2</text><text x="515" y="239" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar p-res crit" data-task="T3" data-tip="&lt;b&gt;T3 — Requirements Analysis&lt;/b&gt;&lt;br&gt;Sun 4 Oct – Sat 10 Oct 2026 · 7 days (W4)&lt;br&gt;Phase: Research · Depends on: T2&lt;br&gt;On the critical path"><rect x="526" y="265" width="69" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="536" y="281" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T3</text><text x="587" y="281" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">1w</text></g>
-<g class="bar p-doc slack" data-task="T4" data-tip="&lt;b&gt;T4 — Draft Report: Introduction &amp; Literature Review&lt;/b&gt;&lt;br&gt;Sun 4 Oct – Sat 17 Oct 2026 · 14 days (W4–W5)&lt;br&gt;Phase: Documentation · Depends on: T2&lt;br&gt;Float: 3 weeks (21 days)"><rect x="526" y="307" width="141" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="536" y="323" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T4</text><text x="659" y="323" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<rect x="670" y="334" width="216" height="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" rx="2.5"/>
-<text x="894" y="338" font-size="9.5" fill="#94a3b8" font-weight="400" text-anchor="start" font-style="italic">3w float</text>
-<g class="bar p-des crit" data-task="T5" data-tip="&lt;b&gt;T5 — System Design (Architecture &amp; DFDs)&lt;/b&gt;&lt;br&gt;Sun 11 Oct – Sat 24 Oct 2026 · 14 days (W5–W6)&lt;br&gt;Phase: Design · Depends on: T3&lt;br&gt;On the critical path"><rect x="598" y="349" width="141" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="608" y="365" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T5</text><text x="731" y="365" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar p-doc crit" data-task="T6" data-tip="&lt;b&gt;T6 — Draft Report: Methodology &amp; Design&lt;/b&gt;&lt;br&gt;Sun 25 Oct – Sat 7 Nov 2026 · 14 days (W7–W8)&lt;br&gt;Phase: Documentation · Depends on: T5&lt;br&gt;On the critical path"><rect x="742" y="391" width="141" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="752" y="407" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T6</text><text x="875" y="407" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar p-doc crit" data-task="T7" data-tip="&lt;b&gt;T7 — Final Report Compilation &amp; Plagiarism Check&lt;/b&gt;&lt;br&gt;Sun 8 Nov – Sat 14 Nov 2026 · 7 days (W9)&lt;br&gt;Phase: Documentation · Depends on: T4, T6&lt;br&gt;On the critical path"><rect x="886" y="433" width="69" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="896" y="449" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T7</text><text x="947" y="449" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">1w</text></g>
-<g class="bar p-pre crit" data-task="T8" data-tip="&lt;b&gt;T8 — Oral Presentation Preparation&lt;/b&gt;&lt;br&gt;Sun 15 Nov – Sat 21 Nov 2026 · 7 days (W10)&lt;br&gt;Phase: Presentation · Depends on: T7&lt;br&gt;On the critical path"><rect x="958" y="475" width="69" height="24" fill="none" stroke="none" rx="4" class="b"/><text x="968" y="491" font-size="11" fill="#0f172a" font-weight="400" text-anchor="start" class="lbl">T8</text><text x="1019" y="491" font-size="11" fill="#0f172a" font-weight="400" text-anchor="end" class="dur">1w</text></g>
-<text x="32" y="139" font-size="10" fill="#64748b" font-weight="600" text-anchor="start">ID</text>
-<text x="72" y="139" font-size="10" fill="#64748b" font-weight="600" text-anchor="start">Task</text>
-<text x="300" y="139" font-size="10" fill="#64748b" font-weight="600" text-anchor="end">Dur.</text>
-<text x="32" y="198" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T1</text>
-<text x="72" y="190" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Project Initiation &amp; Scope</text>
-<text x="72" y="204" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Definition</text>
-<text x="300" y="198" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">1w</text>
-<text x="32" y="240" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T2</text>
-<text x="72" y="240" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Conduct Literature Review</text>
-<text x="300" y="240" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">2w</text>
-<text x="32" y="282" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T3</text>
-<text x="72" y="282" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Requirements Analysis</text>
-<text x="300" y="282" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">1w</text>
-<text x="32" y="324" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T4</text>
-<text x="72" y="316" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Draft Report: Introduction &amp;</text>
-<text x="72" y="330" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Literature Review</text>
-<text x="300" y="324" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">2w</text>
-<text x="32" y="366" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T5</text>
-<text x="72" y="366" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">System Design (Architecture &amp; DFDs)</text>
-<text x="300" y="366" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">2w</text>
-<text x="32" y="408" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T6</text>
-<text x="72" y="408" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Draft Report: Methodology &amp; Design</text>
-<text x="300" y="408" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">2w</text>
-<text x="32" y="450" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T7</text>
-<text x="72" y="442" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Final Report Compilation &amp;</text>
-<text x="72" y="456" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Plagiarism Check</text>
-<text x="300" y="450" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">1w</text>
-<text x="32" y="492" font-size="11.5" fill="#0f172a" font-weight="700" text-anchor="start">T8</text>
-<text x="72" y="492" font-size="10.5" fill="#334155" font-weight="400" text-anchor="start">Oral Presentation Preparation</text>
-<text x="300" y="492" font-size="10.5" fill="#64748b" font-weight="400" text-anchor="end">1w</text>
-<text x="26" y="536" font-size="9.5" fill="#94a3b8" font-weight="400" text-anchor="start">Weeks run Sunday–Saturday · buffer weeks W11–W14 held before the final deadline (19 Dec 2026).</text>
-<text x="1318" y="536" font-size="9.5" fill="#94a3b8" font-weight="400" text-anchor="end">Figure generated from the project schedule table.</text>
+<rect x="0" y="0" width="1368" height="810" fill="#FCFDFC"/>
+<text x="28" y="46" font-size="30" fill="#16232E" font-weight="700" text-anchor="start" letter-spacing="-0.4">BioAgeVision</text>
+<text x="28" y="72" font-size="12" fill="#5B6B77" font-weight="400" text-anchor="start">Implementation plan for the 14-week semester, Sunday 13 September to Saturday 19 December 2026.</text>
+<g class="phase-legend"><rect x="28" y="94" width="12" height="12" fill="#1D3D5C" rx="2"/><text x="46" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Definition</text><rect x="122" y="94" width="12" height="12" fill="#1F6E9C" rx="2"/><text x="140" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Research &amp; Analysis</text><rect x="266.4" y="94" width="12" height="12" fill="#2A8E88" rx="2"/><text x="284.4" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Requirements</text><rect x="371.6" y="94" width="12" height="12" fill="#6E9A38" rx="2"/><text x="389.6" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Architecture &amp; Design</text><rect x="527.2" y="94" width="12" height="12" fill="#C08A2E" rx="2"/><text x="545.2" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Documentation</text><rect x="638" y="94" width="12" height="12" fill="#8E3F6B" rx="2"/><text x="656" y="104" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Finalization</text></g>
+<rect x="28" y="118" width="22" height="11" fill="#3F5566" rx="2"/>
+<text x="58" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Driving chain (no float)</text>
+<rect x="220" y="118" width="22" height="11" rx="2" fill="#C4DEED" stroke="#1F6E9C" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="250" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Float</text>
+<line x1="300" y1="124" x2="322" y2="124" stroke="#7E8C97" stroke-width="1.5" marker-end="url(#ah1)"/>
+<text x="330" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Handoff</text>
+<line x1="391.2" y1="124" x2="413.2" y2="124" stroke="#A9B5BD" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+<text x="421.2" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Overlap (starts before its dependency ends)</text>
+<polygon points="695.6,117.5 701.1,123 695.6,128.5 690.1,123" fill="Finalization" stroke="#FFFFFF" stroke-width="1.2"/>
+<text x="709.6" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Milestone</text>
+<line x1="788" y1="117" x2="788" y2="131" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="798" y="128" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Deadline</text>
+<rect x="328" y="150" width="1008" height="62" fill="#F2F4F4"/>
+<line x1="328" y1="150" x2="328" y2="772" stroke="#D3DADD" stroke-width="1"/>
+<text x="337" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">September</text>
+<line x1="513.1" y1="150" x2="513.1" y2="772" stroke="#D3DADD" stroke-width="1"/>
+<text x="522.1" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">October</text>
+<line x1="832" y1="150" x2="832" y2="772" stroke="#D3DADD" stroke-width="1"/>
+<text x="841" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">November</text>
+<line x1="1140.6" y1="150" x2="1140.6" y2="772" stroke="#D3DADD" stroke-width="1"/>
+<text x="1149.6" y="164" font-size="10.5" fill="#5B6B77" font-weight="600" text-anchor="start" letter-spacing="0.3">December</text>
+<line x1="1336" y1="150" x2="1336" y2="772" stroke="#D3DADD" stroke-width="1"/>
+<line x1="28" y1="170" x2="1336" y2="170" stroke="#D9DEDF" stroke-width="1"/>
+<text x="337" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W1</text>
+<text x="337" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 13</text>
+<text x="409" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W2</text>
+<text x="409" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 20</text>
+<text x="481" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W3</text>
+<text x="481" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Sep 27</text>
+<text x="553" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W4</text>
+<text x="553" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 4</text>
+<text x="625" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W5</text>
+<text x="625" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 11</text>
+<text x="697" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W6</text>
+<text x="697" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 18</text>
+<text x="769" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W7</text>
+<text x="769" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Oct 25</text>
+<text x="841" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W8</text>
+<text x="841" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 1</text>
+<text x="913" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W9</text>
+<text x="913" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 8</text>
+<text x="985" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W10</text>
+<text x="985" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 15</text>
+<text x="1057" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W11</text>
+<text x="1057" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 22</text>
+<text x="1129" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W12</text>
+<text x="1129" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Nov 29</text>
+<text x="1201" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W13</text>
+<text x="1201" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 6</text>
+<text x="1273" y="190" font-size="11" fill="#16232E" font-weight="600" text-anchor="start">W14</text>
+<text x="1273" y="203" font-size="9" fill="#8C9AA5" font-weight="400" text-anchor="start">Dec 13</text>
+<line x1="338.3" y1="208" x2="338.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="348.6" y1="208" x2="348.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="358.9" y1="208" x2="358.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="369.1" y1="208" x2="369.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="379.4" y1="208" x2="379.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="389.7" y1="208" x2="389.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="410.3" y1="208" x2="410.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="420.6" y1="208" x2="420.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="430.9" y1="208" x2="430.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="441.1" y1="208" x2="441.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="451.4" y1="208" x2="451.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="461.7" y1="208" x2="461.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="482.3" y1="208" x2="482.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="492.6" y1="208" x2="492.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="502.9" y1="208" x2="502.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="513.1" y1="208" x2="513.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="523.4" y1="208" x2="523.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="533.7" y1="208" x2="533.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="554.3" y1="208" x2="554.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="564.6" y1="208" x2="564.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="574.9" y1="208" x2="574.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="585.1" y1="208" x2="585.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="595.4" y1="208" x2="595.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="605.7" y1="208" x2="605.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="626.3" y1="208" x2="626.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="636.6" y1="208" x2="636.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="646.9" y1="208" x2="646.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="657.1" y1="208" x2="657.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="667.4" y1="208" x2="667.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="677.7" y1="208" x2="677.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="698.3" y1="208" x2="698.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="708.6" y1="208" x2="708.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="718.9" y1="208" x2="718.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="729.1" y1="208" x2="729.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="739.4" y1="208" x2="739.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="749.7" y1="208" x2="749.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="770.3" y1="208" x2="770.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="780.6" y1="208" x2="780.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="790.9" y1="208" x2="790.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="801.1" y1="208" x2="801.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="811.4" y1="208" x2="811.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="821.7" y1="208" x2="821.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="842.3" y1="208" x2="842.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="852.6" y1="208" x2="852.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="862.9" y1="208" x2="862.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="873.1" y1="208" x2="873.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="883.4" y1="208" x2="883.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="893.7" y1="208" x2="893.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="914.3" y1="208" x2="914.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="924.6" y1="208" x2="924.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="934.9" y1="208" x2="934.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="945.1" y1="208" x2="945.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="955.4" y1="208" x2="955.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="965.7" y1="208" x2="965.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="986.3" y1="208" x2="986.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="996.6" y1="208" x2="996.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1006.9" y1="208" x2="1006.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1017.1" y1="208" x2="1017.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1027.4" y1="208" x2="1027.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1037.7" y1="208" x2="1037.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1058.3" y1="208" x2="1058.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1068.6" y1="208" x2="1068.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1078.9" y1="208" x2="1078.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1089.1" y1="208" x2="1089.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1099.4" y1="208" x2="1099.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1109.7" y1="208" x2="1109.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1130.3" y1="208" x2="1130.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1140.6" y1="208" x2="1140.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1150.9" y1="208" x2="1150.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1161.1" y1="208" x2="1161.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1171.4" y1="208" x2="1171.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1181.7" y1="208" x2="1181.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1202.3" y1="208" x2="1202.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1212.6" y1="208" x2="1212.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1222.9" y1="208" x2="1222.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1233.1" y1="208" x2="1233.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1243.4" y1="208" x2="1243.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1253.7" y1="208" x2="1253.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1274.3" y1="208" x2="1274.3" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1284.6" y1="208" x2="1284.6" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1294.9" y1="208" x2="1294.9" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1305.1" y1="208" x2="1305.1" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1315.4" y1="208" x2="1315.4" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="1325.7" y1="208" x2="1325.7" y2="212" stroke="#E1E6E7" stroke-width="1"/>
+<line x1="328" y1="206" x2="328" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="328" y1="212" x2="328" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="400" y1="206" x2="400" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="400" y1="212" x2="400" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="472" y1="206" x2="472" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="472" y1="212" x2="472" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="544" y1="206" x2="544" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="544" y1="212" x2="544" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="616" y1="206" x2="616" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="616" y1="212" x2="616" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="688" y1="206" x2="688" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="688" y1="212" x2="688" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="760" y1="206" x2="760" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="760" y1="212" x2="760" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="832" y1="206" x2="832" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="832" y1="212" x2="832" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="904" y1="206" x2="904" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="904" y1="212" x2="904" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="976" y1="206" x2="976" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="976" y1="212" x2="976" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1048" y1="206" x2="1048" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1048" y1="212" x2="1048" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1120" y1="206" x2="1120" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1120" y1="212" x2="1120" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1192" y1="206" x2="1192" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1192" y1="212" x2="1192" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1264" y1="206" x2="1264" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="1264" y1="212" x2="1264" y2="772" stroke="#E8ECEC" stroke-width="1"/>
+<line x1="1336" y1="206" x2="1336" y2="212" stroke="#C6CDD0" stroke-width="1"/>
+<line x1="28" y1="212" x2="1336" y2="212" stroke="#D9DEDF" stroke-width="1"/>
+<line x1="28" y1="772" x2="1336" y2="772" stroke="#D9DEDF" stroke-width="1"/>
+<line x1="328" y1="150" x2="328" y2="772" stroke="#D9DEDF" stroke-width="1"/>
+<rect x="28" y="252" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="332" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="412" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="492" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="572" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="652" width="1308" height="40" fill="#F5F7F7"/>
+<rect x="28" y="732" width="1308" height="40" fill="#F5F7F7"/>
+<path class="dep clean" data-from="1.1" data-to="2.1" d="M469 232 H469 V312 H471" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="1.1" data-to="2.2" d="M469 232 H532 V392 H543" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="1.1" data-to="5.1" d="M469 232 H469 V352 H471" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="1.2" data-to="5.1" d="M541 272 H557 V339" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="2.1" data-to="2.3" d="M613 312 H613 V432 H615" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="2.1" data-to="5.2" d="M613 312 H613 V472 H615" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="2.2" data-to="2.3" d="M757 392 H773 V419" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="2.2" data-to="5.2" d="M757 392 H783 V459" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="2.3" data-to="3.1" d="M829 432 H845 V499" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.1" data-to="3.2" d="M901 512 H917 V539" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.2" data-to="4.1" d="M973 552 H989 V579" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="4.1" data-to="4.2" d="M1117 592 H1133 V659" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="4.1" data-to="5.3" d="M1117 592 H1143 V619" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="4.2" data-to="5.3" d="M1189 672 H1179 V619" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="5.1" data-to="6.1" d="M613 352 H1180 V712 H1191" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="5.2" data-to="6.1" d="M901 472 H1172 V712 H1191" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="5.3" data-to="6.1" d="M1189 632 H1173 V712 H1191" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="6.1" data-to="6.2" d="M1333 712 H1323 V739" marker-end="url(#ah2)"/>
+<g class="bar" data-task="1.1" data-phase="def" data-tip="&lt;b&gt;1.1 — Define problem statement &amp; objectives&lt;/b&gt;&lt;br&gt;Sun 13 Sep – Sat 26 Sep 2026&lt;br&gt;W1–W2 · 2 weeks · Definition&lt;br&gt;Depends on: none · Driving chain (no float)"><rect x="328" y="221" width="141" height="22" fill="#1D3D5C" rx="3" class="bx"/><text x="337" y="236" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.1</text><text x="461" y="236" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="1.2" data-phase="def" data-tip="&lt;b&gt;1.2 — Identify required resources&lt;/b&gt;&lt;br&gt;Sun 20 Sep – Sat 3 Oct 2026&lt;br&gt;W2–W3 · 2 weeks · Definition&lt;br&gt;Depends on: none · Driving chain (no float)"><rect x="400" y="261" width="141" height="22" fill="#1D3D5C" rx="3" class="bx"/><text x="409" y="276" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.2</text><text x="533" y="276" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="2.1" data-phase="res" data-tip="&lt;b&gt;2.1 — Research biological vs chronological age markers&lt;/b&gt;&lt;br&gt;Sun 27 Sep – Sat 10 Oct 2026&lt;br&gt;W3–W4 · 2 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 1.1 · Driving chain (no float)"><rect x="472" y="301" width="141" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="481" y="316" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.1</text><text x="605" y="316" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="5.1" data-phase="doc" data-tip="&lt;b&gt;5.1 — Draft Chapter 1: Introduction&lt;/b&gt;&lt;br&gt;Sun 27 Sep – Sat 10 Oct 2026&lt;br&gt;W3–W4 · 2 weeks · Documentation&lt;br&gt;Depends on: 1.1, 1.2 · Float: 8 weeks"><rect x="472" y="341" width="141" height="22" rx="3" fill="#F1E2C2" stroke="#C08A2E" stroke-width="1.2" stroke-dasharray="5 3" class="bx"/><text x="481" y="356" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.1</text><text x="605" y="356" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<text x="478" y="373" font-size="9.5" fill="#8C9AA5" font-weight="500" text-anchor="start">float 8w</text>
+<g class="bar" data-task="2.2" data-phase="res" data-tip="&lt;b&gt;2.2 — Analyze CNNs, Vision Transformers &amp; XAI&lt;/b&gt;&lt;br&gt;Sun 4 Oct – Sat 24 Oct 2026&lt;br&gt;W4–W6 · 3 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 1.1 · Driving chain (no float)"><rect x="544" y="381" width="213" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="553" y="396" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.2</text><text x="749" y="396" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="2.3" data-phase="res" data-tip="&lt;b&gt;2.3 — Critical analysis and comparison of models&lt;/b&gt;&lt;br&gt;Sun 11 Oct – Sat 31 Oct 2026&lt;br&gt;W5–W7 · 3 weeks · Research &amp; Analysis&lt;br&gt;Depends on: 2.1, 2.2 · Driving chain (no float)"><rect x="616" y="421" width="213" height="22" fill="#1F6E9C" rx="3" class="bx"/><text x="625" y="436" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.3</text><text x="821" y="436" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="5.2" data-phase="doc" data-tip="&lt;b&gt;5.2 — Draft Chapter 2: Literature Review&lt;/b&gt;&lt;br&gt;Sun 11 Oct – Sat 7 Nov 2026&lt;br&gt;W5–W8 · 4 weeks · Documentation&lt;br&gt;Depends on: 2.1, 2.2 · Float: 4 weeks"><rect x="616" y="461" width="285" height="22" rx="3" fill="#F1E2C2" stroke="#C08A2E" stroke-width="1.2" stroke-dasharray="5 3" class="bx"/><text x="625" y="476" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.2</text><text x="893" y="476" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">4w</text></g>
+<text x="622" y="493" font-size="9.5" fill="#8C9AA5" font-weight="500" text-anchor="start">float 4w</text>
+<g class="bar" data-task="3.1" data-phase="req" data-tip="&lt;b&gt;3.1 — Define system requirements for BioAgeVision&lt;/b&gt;&lt;br&gt;Sun 25 Oct – Sat 7 Nov 2026&lt;br&gt;W7–W8 · 2 weeks · Requirements&lt;br&gt;Depends on: 2.3 · Driving chain (no float)"><rect x="760" y="501" width="141" height="22" fill="#2A8E88" rx="3" class="bx"/><text x="769" y="516" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.1</text><text x="893" y="516" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="3.2" data-phase="req" data-tip="&lt;b&gt;3.2 — Determine dataset constraints and facial imagery&lt;/b&gt;&lt;br&gt;Sun 1 Nov – Sat 14 Nov 2026&lt;br&gt;W8–W9 · 2 weeks · Requirements&lt;br&gt;Depends on: 3.1 · Driving chain (no float)"><rect x="832" y="541" width="141" height="22" fill="#2A8E88" rx="3" class="bx"/><text x="841" y="556" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.2</text><text x="965" y="556" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="4.1" data-phase="des" data-tip="&lt;b&gt;4.1 — Design deep neural network architecture&lt;/b&gt;&lt;br&gt;Sun 8 Nov – Sat 28 Nov 2026&lt;br&gt;W9–W11 · 3 weeks · Architecture &amp; Design&lt;br&gt;Depends on: 3.2 · Driving chain (no float)"><rect x="904" y="581" width="213" height="22" fill="#6E9A38" rx="3" class="bx"/><text x="913" y="596" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.1</text><text x="1109" y="596" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="5.3" data-phase="doc" data-tip="&lt;b&gt;5.3 — Draft Chapter 3: Methodology &amp; Design&lt;/b&gt;&lt;br&gt;Sun 8 Nov – Sat 5 Dec 2026&lt;br&gt;W9–W12 · 4 weeks · Documentation&lt;br&gt;Depends on: 4.1, 4.2 · Driving chain (no float)"><rect x="904" y="621" width="285" height="22" fill="#C08A2E" rx="3" class="bx"/><text x="913" y="636" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">5.3</text><text x="1181" y="636" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">4w</text></g>
+<g class="bar" data-task="4.2" data-phase="des" data-tip="&lt;b&gt;4.2 — Design high-frequency spatial filters &amp; XAI&lt;/b&gt;&lt;br&gt;Sun 15 Nov – Sat 5 Dec 2026&lt;br&gt;W10–W12 · 3 weeks · Architecture &amp; Design&lt;br&gt;Depends on: 4.1 · Driving chain (no float)"><rect x="976" y="661" width="213" height="22" fill="#6E9A38" rx="3" class="bx"/><text x="985" y="676" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.2</text><text x="1181" y="676" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="6.1" data-phase="fin" data-tip="&lt;b&gt;6.1 — Group proof-reading &amp; formatting checks&lt;/b&gt;&lt;br&gt;Sun 6 Dec – Sat 19 Dec 2026&lt;br&gt;W13–W14 · 2 weeks · Finalization&lt;br&gt;Depends on: 5.1, 5.2, 5.3 · Driving chain (no float)"><rect x="1192" y="701" width="141" height="22" fill="#8E3F6B" rx="3" class="bx"/><text x="1201" y="716" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.1</text><text x="1325" y="716" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="6.2" data-phase="fin" data-tip="&lt;b&gt;6.2 — Final Submission&lt;/b&gt;&lt;br&gt;Sun 13 Dec – Sat 19 Dec 2026&lt;br&gt;W14 · 1 weeks · Finalization&lt;br&gt;Depends on: 6.1 · Driving chain (no float)"><rect x="1264" y="741" width="69" height="22" fill="#8E3F6B" rx="3" class="bx"/><text x="1273" y="756" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.2</text><text x="1325" y="756" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">1w</text></g>
+<text x="32" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">ID</text>
+<text x="76" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">Task</text>
+<text x="316" y="190" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="end">Weeks</text>
+<text x="32" y="237" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.1</text>
+<text x="76" y="237" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Define problem statement &amp; objectives</text>
+<text x="316" y="237" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="277" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.2</text>
+<text x="76" y="277" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Identify required resources</text>
+<text x="316" y="277" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="317" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.1</text>
+<text x="76" y="309" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Research biological vs chronological</text>
+<text x="76" y="323" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">age markers</text>
+<text x="316" y="317" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="357" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.1</text>
+<text x="76" y="357" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 1: Introduction</text>
+<text x="316" y="357" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="397" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.2</text>
+<text x="76" y="389" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Analyze CNNs, Vision Transformers &amp;</text>
+<text x="76" y="403" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">XAI</text>
+<text x="316" y="397" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="437" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.3</text>
+<text x="76" y="429" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Critical analysis and comparison of</text>
+<text x="76" y="443" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">models</text>
+<text x="316" y="437" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="477" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.2</text>
+<text x="76" y="477" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 2: Literature Review</text>
+<text x="316" y="477" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="32" y="517" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.1</text>
+<text x="76" y="509" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Define system requirements for</text>
+<text x="76" y="523" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">BioAgeVision</text>
+<text x="316" y="517" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="557" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.2</text>
+<text x="76" y="549" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Determine dataset constraints and</text>
+<text x="76" y="563" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">facial imagery</text>
+<text x="316" y="557" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="597" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.1</text>
+<text x="76" y="589" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Design deep neural network</text>
+<text x="76" y="603" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">architecture</text>
+<text x="316" y="597" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="637" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.3</text>
+<text x="76" y="637" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 3: Methodology &amp; Design</text>
+<text x="316" y="637" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="32" y="677" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.2</text>
+<text x="76" y="669" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Design high-frequency spatial filters</text>
+<text x="76" y="683" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">&amp; XAI</text>
+<text x="316" y="677" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="717" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.1</text>
+<text x="76" y="709" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Group proof-reading &amp; formatting</text>
+<text x="76" y="723" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">checks</text>
+<text x="316" y="717" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="757" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.2</text>
+<text x="76" y="757" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Final Submission</text>
+<text x="316" y="757" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">1w</text>
+<line x1="1336" y1="170" x2="1336" y2="772" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="5 4"/>
+<circle cx="1336" cy="170" r="3" fill="#A32B2B"/>
+<text x="1326" y="228" font-size="10" fill="#A32B2B" font-weight="600" text-anchor="end">Final deadline — Sat 19 Dec 2026</text>
+<polygon points="1336,746.5 1341.5,752 1336,757.5 1330.5,752" fill="Finalization" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="28" y="796" font-size="9.5" fill="#8C9AA5" font-weight="400" text-anchor="start">Weeks run Sunday to Saturday. Dashed handoffs mark tasks that start before their dependency finishes.</text>
+<text x="1336" y="796" font-size="9.5" fill="#8C9AA5" font-weight="400" text-anchor="end">Generated from the project schedule table.</text>
 </svg>
