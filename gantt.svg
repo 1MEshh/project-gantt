@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2042" height="813" viewBox="0 0 2042 813" font-family="Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="BioAgeVision two-phase project plan, Gantt chart">
-<title>BioAgeVision two-phase project plan</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="2042" height="813" viewBox="0 0 2042 813" font-family="Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="Discrepancy Modeling for Biological vs. Chronological Facial Age Estimation — two-phase project plan, Gantt chart">
+<title>Discrepancy Modeling for Biological vs. Chronological Facial Age Estimation — two-phase project plan</title>
 <defs><style>
 text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif}
 .dep{fill:none;stroke-linecap:square}
@@ -16,18 +16,18 @@ text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif
 <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#A9B5BD"/></marker>
 </defs>
 <rect x="0" y="0" width="2042" height="813" fill="#FCFDFC"/>
-<text x="28" y="44" font-size="30" fill="#16232E" font-weight="700" text-anchor="start" letter-spacing="-0.4">BioAgeVision</text>
-<g class="phase-legend"><rect x="28" y="72" width="12" height="12" fill="#1D4E7C" rx="2"/><text x="46" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 1</text><rect x="107.2" y="72" width="12" height="12" fill="#2A7D74" rx="2"/><text x="125.2" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 2</text></g>
-<rect x="186.4" y="72" width="22" height="12" rx="2" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2"/>
-<text x="216.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Drafting / parallel task</text>
-<polygon points="384.4,71.5 389.9,77 384.4,82.5 378.9,77" fill="#16232E" stroke="#FFFFFF" stroke-width="1.2"/>
-<text x="398.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Milestone</text>
-<line x1="470.8" y1="78" x2="492.8" y2="78" stroke="#7E8C97" stroke-width="1.5" marker-end="url(#ah1)"/>
-<text x="500.8" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Handoff</text>
-<line x1="562" y1="78" x2="584" y2="78" stroke="#A9B5BD" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
-<text x="592" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Overlap (starts before its dependency ends)</text>
-<line x1="866.4" y1="70" x2="866.4" y2="84" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="4 3"/>
-<text x="876.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Submission</text>
+<g class="svg-title"><text x="28" y="44" font-size="30" fill="#16232E" font-weight="700" text-anchor="start" letter-spacing="-0.4">Discrepancy Modeling for Biological vs. Chronological Facial Age Estimation</text></g>
+<rect x="28" y="72" width="22" height="12" rx="2" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2"/>
+<text x="58" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Drafting / parallel task</text>
+<polygon points="226,71.5 231.5,77 226,82.5 220.5,77" fill="#16232E" stroke="#FFFFFF" stroke-width="1.2"/>
+<text x="240" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Milestone</text>
+<line x1="312.4" y1="78" x2="334.4" y2="78" stroke="#7E8C97" stroke-width="1.5" marker-end="url(#ah1)"/>
+<text x="342.4" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Handoff</text>
+<line x1="403.6" y1="78" x2="425.6" y2="78" stroke="#A9B5BD" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+<text x="433.6" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Overlap (starts before its dependency ends)</text>
+<line x1="708" y1="70" x2="708" y2="84" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="718" y="82" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="start">Submission</text>
+<g class="phase-legend"><rect x="804" y="72" width="12" height="12" fill="#1D4E7C" rx="2"/><text x="822" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 1</text><rect x="883.2" y="72" width="12" height="12" fill="#2A7D74" rx="2"/><text x="901.2" y="82" font-size="11" fill="#3A4A54" font-weight="500" text-anchor="start">Phase 2</text></g>
 <rect x="28" y="209" width="1982" height="38" fill="#F5F7F7"/>
 <rect x="28" y="285" width="1982" height="38" fill="#F5F7F7"/>
 <rect x="28" y="361" width="1982" height="38" fill="#F5F7F7"/>

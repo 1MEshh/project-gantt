@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the BioAgeVision two-phase project plan: standalone SVG figure plus an interactive page."""
+"""Generate the Discrepancy Modeling two-phase project plan: standalone SVG figure plus an interactive page."""
 
 import datetime as dt
 import xml.etree.ElementTree as ET
@@ -55,6 +55,10 @@ CRIMSON = "#A32B2B"
 CLEAN = "#7E8C97"
 OVERLAP = "#A9B5BD"
 ARCHIVO = "Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif"
+
+PROJECT = "Discrepancy Modeling for Biological vs. Chronological Facial Age Estimation"
+PAGE_TITLE = PROJECT + " \u2014 two-phase project plan"
+PNG_NAME = "Discrepancy-Modeling-plan.png"
 
 PAD = 28
 LEFT_W = 300
@@ -261,8 +265,8 @@ def build_svg():
 
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" '
          f'viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{ARCHIVO}" role="img" '
-         f'aria-label="BioAgeVision two-phase project plan, Gantt chart">']
-    p.append(f'<title>BioAgeVision two-phase project plan</title>')
+         f'aria-label="{esc_attr(PROJECT)} \u2014 two-phase project plan, Gantt chart">']
+    p.append(f'<title>{esc(PAGE_TITLE)}</title>')
     p.append(f"<defs><style>{SVG_CSS}</style>")
     p.append(f'<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" '
              f'orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="{CLEAN}"/></marker>')
@@ -271,17 +275,9 @@ def build_svg():
     p.append("</defs>")
     p.append(R(0, 0, WIDTH, HEIGHT, fill="#FCFDFC"))
 
-    p.append(T(PAD, TITLE_Y, "BioAgeVision", size=30, weight="700", ls=-0.4))
+    p.append(f'<g class="svg-title">{T(PAD, TITLE_Y, PROJECT, size=30, weight="700", ls=-0.4)}</g>')
 
     lx = PAD
-    phase_legend = ['<g class="phase-legend">']
-    for key, (label, span, accent, tint, dark) in PHASES.items():
-        phase_legend.append(R(lx, LEGEND_Y - 10, 12, 12, fill=accent, rx=2))
-        lx += 18
-        phase_legend.append(T(lx, LEGEND_Y, label, size=11, fill=TEXT, weight="500"))
-        lx += len(label) * 5.6 + 22
-    phase_legend.append("</g>")
-    p.append("".join(phase_legend))
     p.append(f'<rect x="{n(lx)}" y="{n(LEGEND_Y - 10)}" width="22" height="12" rx="2" '
              f'fill="{PHASES[1][3]}" stroke="{PHASES[1][2]}" stroke-width="1.2"/>')
     p.append(T(lx + 30, LEGEND_Y, "Drafting / parallel task", size=11, fill=MUTED))
@@ -297,6 +293,15 @@ def build_svg():
     lx += 30 + 44 * 5.6 + 22
     p.append(L(lx + 6, LEGEND_Y - 12, lx + 6, LEGEND_Y + 2, stroke=CRIMSON, width=1.4, dash="4 3"))
     p.append(T(lx + 16, LEGEND_Y, "Submission", size=11, fill=MUTED))
+    lx += 16 + 10 * 5.6 + 30
+    phase_legend = ['<g class="phase-legend">']
+    for key, (label, span, accent, tint, dark) in PHASES.items():
+        phase_legend.append(R(lx, LEGEND_Y - 10, 12, 12, fill=accent, rx=2))
+        lx += 18
+        phase_legend.append(T(lx, LEGEND_Y, label, size=11, fill=TEXT, weight="500"))
+        lx += len(label) * 5.6 + 22
+    phase_legend.append("</g>")
+    p.append("".join(phase_legend))
 
     for r in range(len(order)):
         if r % 2:
@@ -444,7 +449,7 @@ HTML = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>BioAgeVision \u2014 two-phase project plan</title>
+<title>__PAGE_TITLE__</title>
 <style>
   @font-face {
     font-family: 'Archivo';
@@ -487,17 +492,31 @@ HTML = """<!DOCTYPE html>
   .btn.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
   .btn.primary:hover { background: #0E1A23; }
   .sheet { background: var(--sheet); border: 1px solid var(--line); }
-  .scroll { overflow-x: auto; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
   .sheet svg { display: block; width: 100%; height: auto; min-width: 1400px; }
   .sheet svg .phase-legend { display: none; }
+  .touch-hint { display: none; }
+  .mobile-title { display: none; margin: 0 0 14px; font-size: 19px; line-height: 1.3; font-weight: 700; letter-spacing: -.2px; }
   #tip {
     position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none;
     background: var(--ink); color: #E8EDF0; padding: 10px 12px; border-radius: 3px;
-    font-size: 12px; line-height: 1.55; max-width: 380px;
+    font-size: 12px; line-height: 1.55; max-width: min(380px, calc(100vw - 28px));
     box-shadow: 0 6px 18px rgba(22, 35, 46, .18); opacity: 0; transition: opacity .1s;
   }
   #tip.on { opacity: 1; }
   #tip b { color: #fff; }
+  @media (max-width: 700px) {
+    .shell { padding: 16px 14px 40px; }
+    .hint { font-size: 11px; }
+    .touch-hint { display: block; }
+    .chips { gap: 8px; }
+    .chip { padding: 10px 14px; }
+    .actions { width: 100%; margin-left: 0; }
+    .btn { flex: 1; padding: 14px 12px; }
+    .sheet svg { min-width: 2000px; }
+    .sheet svg .svg-title { display: none; }
+    .mobile-title { display: block; }
+  }
   @media print {
     @page { size: A4 landscape; margin: 8mm; }
     body { background: #fff; }
@@ -512,10 +531,12 @@ HTML = """<!DOCTYPE html>
 </head>
 <body>
 <div class="shell">
+  <h1 class="mobile-title">__PROJECT__</h1>
   <div class="chrome">
     <div class="controls">
       <p class="hint">Select a phase to isolate it on the chart. Select it again to show everything.</p>
       <div class="chips">__CHIPS__</div>
+      <p class="hint touch-hint">Drag the chart sideways to see the full timeline.</p>
     </div>
     <div class="actions">
       <button class="btn" id="print">Print / Save PDF</button>
@@ -530,20 +551,39 @@ HTML = """<!DOCTYPE html>
   var svg = document.querySelector('.sheet svg');
   var tip = document.getElementById('tip');
   var dimmable = '.bar, .ms';
+  var isTouch = window.matchMedia('(hover: none)').matches;
+  function placeTip(cx, cy) {
+    var r = tip.getBoundingClientRect();
+    var x = cx + 16, y = cy + 16;
+    if (x + r.width > window.innerWidth - 8) x = cx - r.width - 16;
+    if (y + r.height > window.innerHeight - 8) y = cy - r.height - 16;
+    tip.style.left = Math.max(8, x) + 'px';
+    tip.style.top = Math.max(8, y) + 'px';
+  }
+  function showTip(g, cx, cy) {
+    tip.innerHTML = g.getAttribute('data-tip');
+    tip.dataset.task = g.getAttribute('data-task');
+    tip.classList.add('on');
+    placeTip(cx, cy);
+  }
+  function hideTip() { tip.classList.remove('on'); tip.dataset.task = ''; }
   document.querySelectorAll(dimmable).forEach(function (g) {
-    g.addEventListener('mouseenter', function () {
-      tip.innerHTML = g.getAttribute('data-tip');
-      tip.classList.add('on');
-    });
-    g.addEventListener('mousemove', function (e) {
-      var r = tip.getBoundingClientRect();
-      var x = e.clientX + 16, y = e.clientY + 16;
-      if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - 16;
-      if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 16;
-      tip.style.left = x + 'px';
-      tip.style.top = y + 'px';
-    });
-    g.addEventListener('mouseleave', function () { tip.classList.remove('on'); });
+    g.addEventListener('mouseenter', function (e) { showTip(g, e.clientX, e.clientY); });
+    g.addEventListener('mousemove', function (e) { placeTip(e.clientX, e.clientY); });
+    g.addEventListener('mouseleave', hideTip);
+    if (isTouch) {
+      g.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (tip.dataset.task === g.getAttribute('data-task') && tip.classList.contains('on')) {
+          hideTip();
+        } else {
+          showTip(g, e.clientX, e.clientY);
+        }
+      });
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest || !e.target.closest('.bar, .ms')) hideTip();
   });
   var active = new Set();
   function apply() {
@@ -581,7 +621,7 @@ HTML = """<!DOCTYPE html>
       ctx.drawImage(img, 0, 0, c.width, c.height);
       URL.revokeObjectURL(url);
       var a = document.createElement('a');
-      a.download = 'BioAgeVision-plan.png';
+      a.download = '__PNG__';
       a.href = c.toDataURL('image/png');
       a.click();
     };
@@ -604,7 +644,11 @@ def build_chips():
 
 def main():
     svg = build_svg()
-    page = HTML.replace("__CHIPS__", build_chips()).replace("__SVG__", svg)
+    page = (HTML.replace("__CHIPS__", build_chips())
+                .replace("__SVG__", svg)
+                .replace("__PAGE_TITLE__", esc(PAGE_TITLE))
+                .replace("__PROJECT__", esc(PROJECT))
+                .replace("__PNG__", PNG_NAME))
     Path("gantt.svg").write_text(svg, encoding="utf-8")
     Path("gantt.html").write_text(page, encoding="utf-8")
     Path("index.html").write_text(page, encoding="utf-8")
