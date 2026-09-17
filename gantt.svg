@@ -36,7 +36,7 @@ text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif
 <rect x="28" y="589" width="1982" height="38" fill="#F5F7F7"/>
 <rect x="28" y="665" width="1982" height="38" fill="#F5F7F7"/>
 <rect x="28" y="741" width="1982" height="38" fill="#F5F7F7"/>
-<line x1="28" y1="513" x2="2010" y2="513" stroke="#CED6D8" stroke-width="1"/>
+<line x1="28" y1="551" x2="2010" y2="551" stroke="#CED6D8" stroke-width="1"/>
 <line x1="2010" y1="128" x2="2010" y2="817" stroke="#A32B2B" stroke-width="1.4" stroke-dasharray="5 4"/>
 <line x1="477.1" y1="171" x2="477.1" y2="817" stroke="#DCE2E3" stroke-width="1"/>
 <text x="481.1" y="183" font-size="8.5" fill="#A9B4BA" font-weight="600" text-anchor="start">Oct</text>
@@ -361,92 +361,90 @@ text{font-family:Archivo, 'Liberation Sans', 'Helvetica Neue', Arial, sans-serif
 <line x1="2010" y1="165" x2="2010" y2="171" stroke="#C6CDD0" stroke-width="1"/>
 <path class="dep overlap" data-from="1.0" data-to="1.1" d="M441 190 H457 V216" marker-end="url(#ah2)"/>
 <path class="dep clean" data-from="1.0" data-to="2.0" d="M441 190 H482 V266 H501" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="2.0" data-to="2.1" d="M731 266 H747 V292" marker-end="url(#ah2)"/>
-<path class="dep clean" data-from="2.0" data-to="3.0" d="M731 266 H772 V342 H791" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="3.0" data-to="3.1" d="M905 342 H905 V380 H907" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="3.1" data-to="3.2" d="M1021 380 H1037 V406" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="3.2" data-to="4.0" d="M1079 418 H1095 V444" marker-end="url(#ah2)"/>
-<path class="dep clean" data-from="4.0" data-to="M1" d="M1140 466 V486" marker-end="url(#ah1)"/>
-<path class="dep clean" data-from="M1" data-to="5.0" d="M1140 494 H1154 V520" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="5.0" data-to="5.1" d="M1311 532 H1327 V558" marker-end="url(#ah2)"/>
-<path class="dep clean" data-from="5.0" data-to="6.0" d="M1311 532 H1352 V608 H1371" marker-end="url(#ah1)"/>
-<path class="dep overlap" data-from="6.0" data-to="6.1" d="M1717 608 H1733 V634" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="6.1" data-to="7.0" d="M1833 646 H1849 V672" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="7.0" data-to="7.1" d="M1891 684 H1907 V710" marker-end="url(#ah2)"/>
-<path class="dep overlap" data-from="7.1" data-to="8.0" d="M1949 722 H1965 V748" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="2.0" data-to="2.1" d="M673 266 H689 V292" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="2.0" data-to="3.0" d="M673 266 H714 V342 H733" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="3.0" data-to="3.1" d="M847 342 H863 V368" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.1" data-to="3.2" d="M905 380 H921 V406" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.2" data-to="3.3" d="M1021 418 H1037 V444" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="3.3" data-to="4.0" d="M1079 456 H1095 V482" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="4.0" data-to="M1" d="M1140 504 V524" marker-end="url(#ah1)"/>
+<path class="dep clean" data-from="M1" data-to="5.0" d="M1140 532 H1154 V558" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="5.0" data-to="5.1" d="M1485 570 H1501 V596" marker-end="url(#ah2)"/>
+<path class="dep clean" data-from="5.0" data-to="6.0" d="M1485 570 H1477 V646 H1487" marker-end="url(#ah1)"/>
+<path class="dep overlap" data-from="6.0" data-to="6.1" d="M1717 646 H1733 V672" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="6.1" data-to="7.0" d="M1833 684 H1849 V710" marker-end="url(#ah2)"/>
+<path class="dep overlap" data-from="7.0" data-to="8.0" d="M1891 722 H1907 V748" marker-end="url(#ah2)"/>
 <path class="dep clean" data-from="8.0" data-to="M2" d="M2010 770 V790" marker-end="url(#ah1)"/>
-<g class="bar" data-task="1.0" data-phase="1" data-tip="&lt;b&gt;1.0 — Project Initialization (Problem, Objectives &amp; Requirements)&lt;/b&gt;&lt;br&gt;Sun 13 Sep 2026 – Sat 26 Sep 2026&lt;br&gt;W1–W2 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: none"><rect x="328" y="180" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="337" y="194" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.0</text><text x="433" y="194" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="1.0" data-phase="1" data-tip="&lt;b&gt;1.0 — Project Initialization (Motivation, Problem, Objective)&lt;/b&gt;&lt;br&gt;Sun 13 Sep 2026 – Sat 26 Sep 2026&lt;br&gt;W1–W2 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: none"><rect x="328" y="180" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="337" y="194" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">1.0</text><text x="433" y="194" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
 <g class="bar" data-task="1.1" data-phase="1" data-tip="&lt;b&gt;1.1 — Draft Chapter 1: Introduction&lt;/b&gt;&lt;br&gt;Sun 20 Sep 2026 – Sat 3 Oct 2026&lt;br&gt;W2–W3 · 2 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 1.0"><rect x="386" y="218" width="113" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="395" y="232" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">1.1</text><text x="491" y="232" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="2.0" data-phase="1" data-tip="&lt;b&gt;2.0 — Literature Research (Systematic Analysis &amp; Critical Review)&lt;/b&gt;&lt;br&gt;Sun 4 Oct 2026 – Sat 31 Oct 2026&lt;br&gt;W4–W7 · 4 weeks · Phase 1&lt;br&gt;Core task · Depends on: 1.0"><rect x="502" y="256" width="229" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="511" y="270" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.0</text><text x="723" y="270" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">4w</text></g>
-<g class="bar" data-task="2.1" data-phase="1" data-tip="&lt;b&gt;2.1 — Draft Chapter 2: Literature Review&lt;/b&gt;&lt;br&gt;Sun 25 Oct 2026 – Sat 14 Nov 2026&lt;br&gt;W7–W9 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 2.0"><rect x="676" y="294" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="685" y="308" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">2.1</text><text x="839" y="308" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="3.0" data-phase="1" data-tip="&lt;b&gt;3.0 — Stage 1: Data Collection&lt;/b&gt;&lt;br&gt;Sun 8 Nov 2026 – Sat 21 Nov 2026&lt;br&gt;W9–W10 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 2.0"><rect x="792" y="332" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="801" y="346" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.0</text><text x="897" y="346" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="3.1" data-phase="1" data-tip="&lt;b&gt;3.1 — Stage 2: Design Methodology&lt;/b&gt;&lt;br&gt;Sun 22 Nov 2026 – Sat 5 Dec 2026&lt;br&gt;W11–W12 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.0"><rect x="908" y="370" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="917" y="384" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.1</text><text x="1013" y="384" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="3.2" data-phase="1" data-tip="&lt;b&gt;3.2 — Draft Chapter 3: Methodology&lt;/b&gt;&lt;br&gt;Sun 22 Nov 2026 – Sat 12 Dec 2026&lt;br&gt;W11–W13 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 3.1"><rect x="908" y="408" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="917" y="422" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">3.2</text><text x="1071" y="422" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="4.0" data-phase="1" data-tip="&lt;b&gt;4.0 — Phase One Final Review &amp; Polish&lt;/b&gt;&lt;br&gt;Sun 6 Dec 2026 – Sat 19 Dec 2026&lt;br&gt;W13–W14 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.2"><rect x="1024" y="446" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="1033" y="460" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.0</text><text x="1129" y="460" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="5.0" data-phase="2" data-tip="&lt;b&gt;5.0 — System Design&lt;/b&gt;&lt;br&gt;Thu 14 Jan 2027 – Wed 3 Feb 2027&lt;br&gt;W1–W3 · 3 weeks · Phase 2&lt;br&gt;Core task · Depends on: M1"><rect x="1140" y="522" width="171" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1149" y="536" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">5.0</text><text x="1303" y="536" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="5.1" data-phase="2" data-tip="&lt;b&gt;5.1 — Draft Chapter 4: Design&lt;/b&gt;&lt;br&gt;Thu 28 Jan 2027 – Wed 17 Feb 2027&lt;br&gt;W3–W5 · 3 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 5.0"><rect x="1256" y="560" width="171" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1265" y="574" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.1</text><text x="1419" y="574" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="6.0" data-phase="2" data-tip="&lt;b&gt;6.0 — Implementation &amp; App Deployment&lt;/b&gt;&lt;br&gt;Thu 11 Feb 2027 – Wed 24 Mar 2027&lt;br&gt;W5–W10 · 6 weeks · Phase 2&lt;br&gt;Core task · Depends on: 5.0"><rect x="1372" y="598" width="345" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1381" y="612" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.0</text><text x="1709" y="612" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">6w</text></g>
-<g class="bar" data-task="6.1" data-phase="2" data-tip="&lt;b&gt;6.1 — Draft Chapter 5: Implementation &amp; Test&lt;/b&gt;&lt;br&gt;Thu 18 Mar 2027 – Wed 7 Apr 2027&lt;br&gt;W10–W12 · 3 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 6.0"><rect x="1662" y="636" width="171" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1671" y="650" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">6.1</text><text x="1825" y="650" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="7.0" data-phase="2" data-tip="&lt;b&gt;7.0 — Model Evaluation &amp; Heatmaps&lt;/b&gt;&lt;br&gt;Thu 25 Mar 2027 – Wed 14 Apr 2027&lt;br&gt;W11–W13 · 3 weeks · Phase 2&lt;br&gt;Core task · Depends on: 6.1"><rect x="1720" y="674" width="171" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1729" y="688" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">7.0</text><text x="1883" y="688" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
-<g class="bar" data-task="7.1" data-phase="2" data-tip="&lt;b&gt;7.1 — Draft Ch. 6 &amp; 7: Evaluation &amp; Conclusion&lt;/b&gt;&lt;br&gt;Thu 8 Apr 2027 – Wed 21 Apr 2027&lt;br&gt;W13–W14 · 2 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 7.0"><rect x="1836" y="712" width="113" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1845" y="726" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">7.1</text><text x="1941" y="726" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="bar" data-task="8.0" data-phase="2" data-tip="&lt;b&gt;8.0 — Final Report Review&lt;/b&gt;&lt;br&gt;Thu 15 Apr 2027 – Wed 28 Apr 2027&lt;br&gt;W14–W15 · 2 weeks · Phase 2&lt;br&gt;Core task · Depends on: 7.1"><rect x="1894" y="750" width="113" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1903" y="764" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">8.0</text><text x="1999" y="764" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
-<g class="ms" data-task="M1" data-phase="1" data-tip="&lt;b&gt;M1 — Phase 1 Final Submission&lt;/b&gt;&lt;br&gt;End of Phase 1 · Sat 19 Dec 2026&lt;br&gt;Milestone · Phase 1&lt;br&gt;Depends on: 4.0"><polygon points="1140,488 1146,494 1140,500 1134,494" fill="#16232E" stroke="#FFFFFF" stroke-width="1.5"/><text x="1130" y="497" font-size="9.5" fill="#143A5C" font-weight="600" text-anchor="end">19 Dec 2026</text></g>
+<g class="bar" data-task="2.0" data-phase="1" data-tip="&lt;b&gt;2.0 — Systematic Literature Review&lt;/b&gt;&lt;br&gt;Sun 4 Oct 2026 – Sat 24 Oct 2026&lt;br&gt;W4–W6 · 3 weeks · Phase 1&lt;br&gt;Core task · Depends on: 1.0"><rect x="502" y="256" width="171" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="511" y="270" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">2.0</text><text x="665" y="270" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="2.1" data-phase="1" data-tip="&lt;b&gt;2.1 — Draft Chapter 2: Literature review&lt;/b&gt;&lt;br&gt;Sun 18 Oct 2026 – Sat 7 Nov 2026&lt;br&gt;W6–W8 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 2.0"><rect x="618" y="294" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="627" y="308" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">2.1</text><text x="781" y="308" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="3.0" data-phase="1" data-tip="&lt;b&gt;3.0 — Stage 1: Data collection&lt;/b&gt;&lt;br&gt;Sun 1 Nov 2026 – Sat 14 Nov 2026&lt;br&gt;W8–W9 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 2.0"><rect x="734" y="332" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="743" y="346" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.0</text><text x="839" y="346" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="3.1" data-phase="1" data-tip="&lt;b&gt;3.1 — Stage 2: Data analysis&lt;/b&gt;&lt;br&gt;Sun 8 Nov 2026 – Sat 21 Nov 2026&lt;br&gt;W9–W10 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.0"><rect x="792" y="370" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="801" y="384" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.1</text><text x="897" y="384" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="3.2" data-phase="1" data-tip="&lt;b&gt;3.2 — Stage 3: Methodology design&lt;/b&gt;&lt;br&gt;Sun 15 Nov 2026 – Sat 5 Dec 2026&lt;br&gt;W10–W12 · 3 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.1"><rect x="850" y="408" width="171" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="859" y="422" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">3.2</text><text x="1013" y="422" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="3.3" data-phase="1" data-tip="&lt;b&gt;3.3 — Draft Chapter 3: Methodology&lt;/b&gt;&lt;br&gt;Sun 22 Nov 2026 – Sat 12 Dec 2026&lt;br&gt;W11–W13 · 3 weeks · Phase 1&lt;br&gt;Drafting / parallel task · Depends on: 3.2"><rect x="908" y="446" width="171" height="20" rx="3" fill="#D7E3EE" stroke="#1D4E7C" stroke-width="1.2" class="bx"/><text x="917" y="460" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">3.3</text><text x="1071" y="460" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="4.0" data-phase="1" data-tip="&lt;b&gt;4.0 — Phase One Final Review &amp; Polish&lt;/b&gt;&lt;br&gt;Sun 6 Dec 2026 – Sat 19 Dec 2026&lt;br&gt;W13–W14 · 2 weeks · Phase 1&lt;br&gt;Core task · Depends on: 3.3"><rect x="1024" y="484" width="113" height="20" fill="#1D4E7C" rx="3" class="bx"/><text x="1033" y="498" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">4.0</text><text x="1129" y="498" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="5.0" data-phase="2" data-tip="&lt;b&gt;5.0 — System Implementation &amp; App Deployment&lt;/b&gt;&lt;br&gt;Thu 14 Jan 2027 – Wed 24 Feb 2027&lt;br&gt;W1–W6 · 6 weeks · Phase 2&lt;br&gt;Core task · Depends on: M1"><rect x="1140" y="560" width="345" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1149" y="574" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">5.0</text><text x="1477" y="574" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">6w</text></g>
+<g class="bar" data-task="5.1" data-phase="2" data-tip="&lt;b&gt;5.1 — Draft Chapter 4: Implementation&lt;/b&gt;&lt;br&gt;Thu 11 Feb 2027 – Wed 3 Mar 2027&lt;br&gt;W5–W7 · 3 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 5.0"><rect x="1372" y="598" width="171" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1381" y="612" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">5.1</text><text x="1535" y="612" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="bar" data-task="6.0" data-phase="2" data-tip="&lt;b&gt;6.0 — System Results and Testing&lt;/b&gt;&lt;br&gt;Thu 25 Feb 2027 – Wed 24 Mar 2027&lt;br&gt;W7–W10 · 4 weeks · Phase 2&lt;br&gt;Core task · Depends on: 5.0"><rect x="1488" y="636" width="229" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1497" y="650" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">6.0</text><text x="1709" y="650" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">4w</text></g>
+<g class="bar" data-task="6.1" data-phase="2" data-tip="&lt;b&gt;6.1 — Draft Chapter 5: Result and testing&lt;/b&gt;&lt;br&gt;Thu 11 Mar 2027 – Wed 7 Apr 2027&lt;br&gt;W9–W12 · 4 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 6.0"><rect x="1604" y="674" width="229" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1613" y="688" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">6.1</text><text x="1825" y="688" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">4w</text></g>
+<g class="bar" data-task="7.0" data-phase="2" data-tip="&lt;b&gt;7.0 — Draft Chapter 6: Conclusion&lt;/b&gt;&lt;br&gt;Thu 1 Apr 2027 – Wed 14 Apr 2027&lt;br&gt;W12–W13 · 2 weeks · Phase 2&lt;br&gt;Drafting / parallel task · Depends on: 6.1"><rect x="1778" y="712" width="113" height="20" rx="3" fill="#D3E6E3" stroke="#2A7D74" stroke-width="1.2" class="bx"/><text x="1787" y="726" font-size="11" fill="#16232E" font-weight="400" text-anchor="start" class="lbl">7.0</text><text x="1883" y="726" font-size="11" fill="#5B6B77" font-weight="400" text-anchor="end" class="dur">2w</text></g>
+<g class="bar" data-task="8.0" data-phase="2" data-tip="&lt;b&gt;8.0 — Final Report Review &amp; Formatting&lt;/b&gt;&lt;br&gt;Thu 8 Apr 2027 – Wed 28 Apr 2027&lt;br&gt;W13–W15 · 3 weeks · Phase 2&lt;br&gt;Core task · Depends on: 7.0"><rect x="1836" y="750" width="171" height="20" fill="#2A7D74" rx="3" class="bx"/><text x="1845" y="764" font-size="11" fill="#FFFFFF" font-weight="400" text-anchor="start" class="lbl">8.0</text><text x="1999" y="764" font-size="11" fill="#E4EAEE" font-weight="400" text-anchor="end" class="dur">3w</text></g>
+<g class="ms" data-task="M1" data-phase="1" data-tip="&lt;b&gt;M1 — Phase 1 Final Submission&lt;/b&gt;&lt;br&gt;End of Phase 1 · Sat 19 Dec 2026&lt;br&gt;Milestone · Phase 1&lt;br&gt;Depends on: 4.0"><polygon points="1140,526 1146,532 1140,538 1134,532" fill="#16232E" stroke="#FFFFFF" stroke-width="1.5"/><text x="1130" y="535" font-size="9.5" fill="#143A5C" font-weight="600" text-anchor="end">19 Dec 2026</text></g>
 <g class="ms" data-task="M2" data-phase="2" data-tip="&lt;b&gt;M2 — Phase 2 Final Submission&lt;/b&gt;&lt;br&gt;End of Phase 2 · Thu 29 Apr 2027&lt;br&gt;Milestone · Phase 2&lt;br&gt;Depends on: 8.0"><polygon points="2010,792 2016,798 2010,804 2004,798" fill="#16232E" stroke="#FFFFFF" stroke-width="1.5"/><text x="2000" y="801" font-size="9.5" fill="#1F5E57" font-weight="600" text-anchor="end">29 Apr 2027</text></g>
 <text x="32" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">ID</text>
 <text x="76" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="start">Task</text>
 <text x="316" y="147" font-size="10.5" fill="#8C9AA5" font-weight="600" text-anchor="end">Weeks</text>
 <text x="32" y="195" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.0</text>
-<text x="76" y="187" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Project Initialization (Problem,</text>
-<text x="76" y="200" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Objectives &amp; Requirements)</text>
+<text x="76" y="187" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Project Initialization (Motivation,</text>
+<text x="76" y="200" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Problem, Objective)</text>
 <text x="316" y="195" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
 <text x="32" y="233" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">1.1</text>
 <text x="76" y="233" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 1: Introduction</text>
 <text x="316" y="233" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
 <text x="32" y="271" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.0</text>
-<text x="76" y="263" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Literature Research (Systematic</text>
-<text x="76" y="276" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Analysis &amp; Critical Review)</text>
-<text x="316" y="271" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="76" y="271" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Systematic Literature Review</text>
+<text x="316" y="271" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
 <text x="32" y="309" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">2.1</text>
-<text x="76" y="309" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 2: Literature Review</text>
+<text x="76" y="309" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 2: Literature review</text>
 <text x="316" y="309" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
 <text x="32" y="347" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.0</text>
-<text x="76" y="347" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Stage 1: Data Collection</text>
+<text x="76" y="347" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Stage 1: Data collection</text>
 <text x="316" y="347" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
 <text x="32" y="385" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.1</text>
-<text x="76" y="385" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Stage 2: Design Methodology</text>
+<text x="76" y="385" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Stage 2: Data analysis</text>
 <text x="316" y="385" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
 <text x="32" y="423" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.2</text>
-<text x="76" y="423" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 3: Methodology</text>
+<text x="76" y="423" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Stage 3: Methodology design</text>
 <text x="316" y="423" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="461" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.0</text>
-<text x="76" y="461" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase One Final Review &amp; Polish</text>
-<text x="316" y="461" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
-<text x="32" y="499" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">M1</text>
-<text x="76" y="499" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase 1 Final Submission</text>
-<text x="316" y="499" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">—</text>
-<text x="32" y="537" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.0</text>
-<text x="76" y="537" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">System Design</text>
-<text x="316" y="537" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="575" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.1</text>
-<text x="76" y="575" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 4: Design</text>
-<text x="316" y="575" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="613" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.0</text>
-<text x="76" y="613" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Implementation &amp; App Deployment</text>
-<text x="316" y="613" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">6w</text>
-<text x="32" y="651" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.1</text>
-<text x="76" y="643" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 5: Implementation &amp;</text>
-<text x="76" y="656" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Test</text>
-<text x="316" y="651" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="689" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">7.0</text>
-<text x="76" y="689" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Model Evaluation &amp; Heatmaps</text>
-<text x="316" y="689" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
-<text x="32" y="727" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">7.1</text>
-<text x="76" y="719" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Ch. 6 &amp; 7: Evaluation &amp;</text>
-<text x="76" y="732" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Conclusion</text>
+<text x="32" y="461" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">3.3</text>
+<text x="76" y="461" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 3: Methodology</text>
+<text x="316" y="461" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="499" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">4.0</text>
+<text x="76" y="499" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase One Final Review &amp; Polish</text>
+<text x="316" y="499" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="32" y="537" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">M1</text>
+<text x="76" y="537" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase 1 Final Submission</text>
+<text x="316" y="537" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">—</text>
+<text x="32" y="575" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.0</text>
+<text x="76" y="567" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">System Implementation &amp; App</text>
+<text x="76" y="580" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Deployment</text>
+<text x="316" y="575" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">6w</text>
+<text x="32" y="613" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">5.1</text>
+<text x="76" y="613" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 4: Implementation</text>
+<text x="316" y="613" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
+<text x="32" y="651" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.0</text>
+<text x="76" y="651" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">System Results and Testing</text>
+<text x="316" y="651" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="32" y="689" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">6.1</text>
+<text x="76" y="689" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 5: Result and testing</text>
+<text x="316" y="689" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">4w</text>
+<text x="32" y="727" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">7.0</text>
+<text x="76" y="727" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Draft Chapter 6: Conclusion</text>
 <text x="316" y="727" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
 <text x="32" y="765" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">8.0</text>
-<text x="76" y="765" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Final Report Review</text>
-<text x="316" y="765" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">2w</text>
+<text x="76" y="765" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Final Report Review &amp; Formatting</text>
+<text x="316" y="765" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">3w</text>
 <text x="32" y="803" font-size="11.5" fill="#16232E" font-weight="600" text-anchor="start">M2</text>
 <text x="76" y="803" font-size="10.5" fill="#3A4A54" font-weight="400" text-anchor="start">Phase 2 Final Submission</text>
 <text x="316" y="803" font-size="10.5" fill="#5B6B77" font-weight="500" text-anchor="end">—</text>
