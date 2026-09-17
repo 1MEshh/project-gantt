@@ -15,13 +15,14 @@ P2_DAYS = P2_WEEKS * 7
 COLS = P1_WEEKS + P2_WEEKS
 
 TASKS = [
-    dict(id="1.0", name="Project Initialization & Scope", phase=1, sw=1, ew=2, kind="core", deps=[]),
+    dict(id="1.0", name="Project Initialization (Problem, Objectives & Requirements)", phase=1, sw=1, ew=2, kind="core", deps=[]),
     dict(id="1.1", name="Draft Chapter 1: Introduction", phase=1, sw=2, ew=3, kind="draft", deps=["1.0"]),
-    dict(id="2.0", name="Literature Research", phase=1, sw=4, ew=7, kind="core", deps=["1.0"]),
+    dict(id="2.0", name="Literature Research (Systematic Analysis & Critical Review)", phase=1, sw=4, ew=7, kind="core", deps=["1.0"]),
     dict(id="2.1", name="Draft Chapter 2: Literature Review", phase=1, sw=7, ew=9, kind="draft", deps=["2.0"]),
-    dict(id="3.0", name="System Requirements Analysis", phase=1, sw=9, ew=11, kind="core", deps=["2.0"]),
-    dict(id="3.1", name="Draft Chapter 3: Requirements/Analysis", phase=1, sw=11, ew=13, kind="draft", deps=["3.0"]),
-    dict(id="4.0", name="Phase One Final Review & Polish", phase=1, sw=13, ew=14, kind="core", deps=["3.1"]),
+    dict(id="3.0", name="Stage 1: Data Collection", phase=1, sw=9, ew=10, kind="core", deps=["2.0"]),
+    dict(id="3.1", name="Stage 2: Design Methodology", phase=1, sw=11, ew=12, kind="core", deps=["3.0"]),
+    dict(id="3.2", name="Draft Chapter 3: Methodology", phase=1, sw=11, ew=13, kind="draft", deps=["3.1"]),
+    dict(id="4.0", name="Phase One Final Review & Polish", phase=1, sw=13, ew=14, kind="core", deps=["3.2"]),
     dict(id="M1", name="Phase 1 Final Submission", phase=1, sw=14, ew=14, kind="milestone", deps=["4.0"]),
     dict(id="5.0", name="System Design", phase=2, sw=1, ew=3, kind="core", deps=["M1"]),
     dict(id="5.1", name="Draft Chapter 4: Design", phase=2, sw=3, ew=5, kind="draft", deps=["5.0"]),
@@ -40,7 +41,7 @@ PHASES = {
 
 MILESTONE_DATES = {"M1": dt.date(2026, 12, 19), "M2": dt.date(2027, 4, 29)}
 OVERLAP_PAIRS = {
-    ("1.0", "1.1"), ("2.0", "2.1"), ("3.0", "3.1"), ("3.1", "4.0"),
+    ("1.0", "1.1"), ("2.0", "2.1"), ("3.1", "3.2"), ("3.2", "4.0"),
     ("5.0", "5.1"), ("6.0", "6.1"), ("6.1", "7.0"), ("7.0", "7.1"), ("7.1", "8.0"),
 }
 
@@ -306,7 +307,8 @@ def build_svg():
     for r in range(len(order)):
         if r % 2:
             p.append(R(PAD, ry(r), PLOT_RIGHT - PAD, ROW_H, fill=PANEL))
-    p.append(L(PAD, ry(8), PLOT_RIGHT, ry(8), stroke="#CED6D8", width=1))
+    first_p2 = min(idx[t["id"]] for t in order if t["phase"] == 2)
+    p.append(L(PAD, ry(first_p2), PLOT_RIGHT, ry(first_p2), stroke="#CED6D8", width=1))
 
     p.append(L(PLOT_RIGHT, BANNER_BOTTOM, PLOT_RIGHT, ROWS_BOTTOM, stroke=CRIMSON, width=1.4, dash="5 4"))
     for g, label in MONTH_LINES:
