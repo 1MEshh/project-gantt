@@ -19,11 +19,12 @@ TASKS = [
     dict(id="1.1", name="Draft Chapter 1: Introduction", phase=1, sw=2, ew=3, kind="draft", deps=["1.0"]),
     dict(id="2.0", name="Systematic Literature Review", phase=1, sw=4, ew=6, kind="core", deps=["1.0"]),
     dict(id="2.1", name="Draft Chapter 2: Literature review", phase=1, sw=6, ew=8, kind="draft", deps=["2.0"]),
-    dict(id="3.0", name="Stage 1: Data collection", phase=1, sw=8, ew=9, kind="core", deps=["2.0"]),
-    dict(id="3.1", name="Stage 2: Data analysis", phase=1, sw=9, ew=10, kind="core", deps=["3.0"]),
-    dict(id="3.2", name="Stage 3: Methodology design", phase=1, sw=10, ew=12, kind="core", deps=["3.1"]),
-    dict(id="3.3", name="Draft Chapter 3: Methodology", phase=1, sw=11, ew=13, kind="draft", deps=["3.2"]),
-    dict(id="4.0", name="Phase One Final Review & Polish", phase=1, sw=13, ew=14, kind="core", deps=["3.3"]),
+    dict(id="3.0", name="Requirements/Analysis", phase=1, sw=8, ew=9, kind="core", deps=["2.0"]),
+    dict(id="3.1", name="Stage 1: Data collection", phase=1, sw=9, ew=10, kind="core", deps=["3.0"]),
+    dict(id="3.2", name="Stage 2: Data analysis", phase=1, sw=10, ew=11, kind="core", deps=["3.1"]),
+    dict(id="3.3", name="Methodology design", phase=1, sw=11, ew=12, kind="core", deps=["3.2"]),
+    dict(id="3.4", name="Draft Chapter 3: Methodology", phase=1, sw=12, ew=14, kind="draft", deps=["3.3"]),
+    dict(id="4.0", name="Phase One Final Review & Polish", phase=1, sw=13, ew=14, kind="core", deps=["3.4"]),
     dict(id="M1", name="Phase 1 Final Submission", phase=1, sw=14, ew=14, kind="milestone", deps=["4.0"]),
     dict(id="5.0", name="System Implementation & App Deployment", phase=2, sw=1, ew=6, kind="core", deps=["M1"]),
     dict(id="5.1", name="Draft Chapter 4: Implementation", phase=2, sw=5, ew=7, kind="draft", deps=["5.0"]),
@@ -41,7 +42,7 @@ PHASES = {
 
 MILESTONE_DATES = {"M1": dt.date(2026, 12, 19), "M2": dt.date(2027, 4, 29)}
 OVERLAP_PAIRS = {
-    ("1.0", "1.1"), ("2.0", "2.1"), ("3.0", "3.1"), ("3.1", "3.2"), ("3.2", "3.3"), ("3.3", "4.0"),
+    ("1.0", "1.1"), ("2.0", "2.1"), ("3.0", "3.1"), ("3.1", "3.2"), ("3.2", "3.3"), ("3.3", "3.4"), ("3.4", "4.0"),
     ("5.0", "5.1"), ("6.0", "6.1"), ("6.1", "7.0"), ("7.0", "8.0"),
 }
 
